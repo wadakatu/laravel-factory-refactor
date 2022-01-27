@@ -11,6 +11,7 @@
     ],
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/wadakatu/laravel-factory-refactor",
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.3",
