@@ -1,7 +1,7 @@
 # Laravel-Factory-Refactor
 
-![Packagist Version](https://img.shields.io/packagist/v/wadakatu/laravel-factory-refactor)
-![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)
+[![Packagist Version](https://img.shields.io/packagist/v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)
 
 This package will help you to refactor the style of factory call from helper to static method for Laravel 8.x.
