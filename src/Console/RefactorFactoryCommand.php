@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace Wadakatu\LaravelFactoryRefactor\Console;
 
@@ -26,15 +25,13 @@ class RefactorFactoryCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Refactor the style of factory call for laravel 8.x.';
+    protected $description = 'refactor the style of factory.';
 
-    private $testDir;
+    private $dir;
 
-    private $modelDir;
+    private $namespace = 'Tests\\';
 
     private $files;
-
-    private $testNamespace = 'Tests\\';
 
     /**
      * Create a new command instance.
@@ -55,8 +52,7 @@ class RefactorFactoryCommand extends Command
      */
     public function handle()
     {
-        $this->testDir = $this->option('test_dir') ?? 'tests';
-        $this->modelDir = $this->option('model_dir') ?? 'app/Models';
+        $this->dir = $this->option('dir') ?? 'tests';
 
         $tests = $this->loadTests();
         $this->info(count($tests) . " Tests Found.");
@@ -89,36 +85,13 @@ class RefactorFactoryCommand extends Command
     protected function getOptions(): array
     {
         return [
-            ['test_dir', 'T', InputOption::VALUE_OPTIONAL, 'The test directory'],
-            ['model_dir', 'M', InputOption::VALUE_OPTIONAL, 'The model directory'],
+            ['dir', 'D', InputOption::VALUE_OPTIONAL, 'The test directory'],
         ];
-    }
-
-    /**
-     * @noinspection PhpUndefinedMethodInspection
-     */
-    protected function loadModels(): array
-    {
-        $rootDirectory = basename($this->laravel->path());
-
-        if (!file_exists($this->laravel->basePath($this->modelDir))) {
-            $this->error('Model directory does not exists.');
-
-            return [];
-        }
-
-        return array_map(function (SplFIleInfo $file) use ($rootDirectory) {
-            return str_replace(
-                ['/', DIRECTORY_SEPARATOR, "$rootDirectory\\"],
-                ['\\', '\\', $this->laravel->getNamespace()],
-                $this->formatPath($file->getPath(), basename($file->getFilename(), '.php'))
-            );
-        }, $this->files->allFiles($this->modelDir));
     }
 
     protected function loadTests(): array
     {
-        if (!file_exists($this->laravel->basePath($this->testDir))) {
+        if (!file_exists($this->laravel->basePath($this->dir))) {
             $this->error('Test directory does not exists.');
 
             return [];
@@ -126,11 +99,11 @@ class RefactorFactoryCommand extends Command
 
         return array_map(function (SplFIleInfo $file) {
             return str_replace(
-                ['/', DIRECTORY_SEPARATOR, lcfirst($this->testNamespace)],
-                ['\\', '\\', $this->testNamespace],
+                ['/', DIRECTORY_SEPARATOR, lcfirst($this->namespace)],
+                ['\\', '\\', $this->namespace],
                 $this->formatPath($file->getPath(), basename($file->getFilename(), '.php'))
             );
-        }, $this->files->allFiles($this->testDir));
+        }, $this->files->allFiles($this->dir));
     }
 
     protected function formatPath(string ...$paths): string
@@ -140,41 +113,22 @@ class RefactorFactoryCommand extends Command
 
     protected function replaceFactoryStyleToClassBased(string $content): string
     {
-        foreach ($this->loadModels() as $model) {
-            $content = str_replace($this->createSearchArr($model), $this->createReplaceArr($model),
-                preg_replace($this->createPregSearchArr($model), $this->createPregReplaceArr($model), $content));
-        }
-        return $content;
+        return preg_replace($this->createPregSearchArr(), $this->createPregReplaceArr(), $content);
     }
 
-    protected function createSearchArr(string $model): array
-    {
-        return ['factory(' . $this->getModelBaseName($model) . '::class)', 'factory(' . $model . '::class)'];
-    }
-
-    protected function createReplaceArr(string $model): array
-    {
-        return [$this->getModelBaseName($model) . '::factory()', $model . '::factory()'];
-    }
-
-    protected function createPregSearchArr(string $model): array
+    protected function createPregSearchArr(): array
     {
         return [
-            '/factory\(\s*' . $this->getModelBaseName($model) . '::class\s*,\s*([0-9]*)\s*\)/',
-            '/factory\(\s*' . str_replace('\\', '\\\\', $model) . '::class\s*,\s*([0-9]*)\s*\)/',
+            '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\)/',
+            '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\,\s*([0-9]*)\s*\)/',
         ];
     }
 
-    protected function createPregReplaceArr(string $model): array
+    protected function createPregReplaceArr(): array
     {
         return [
-            $this->getModelBaseName($model) . "::factory()->count($1)",
-            $model . "::factory()->count($1)",
+            '$1' . "::factory()",
+            '$1' . "::factory()->count($2)",
         ];
-    }
-
-    protected function getModelBaseName(string $model): string
-    {
-        return basename($model);
     }
 }

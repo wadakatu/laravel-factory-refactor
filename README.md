@@ -26,20 +26,10 @@ php artisan refactor:factory
 
 By default, all factory call under `tests/` directory are the target of refactoring.
 
-If you want to change the target directory, you can do that by using the `--test_dir` option.
+If you want to change the target directory, you can do that by using the `--dir` option.
 
 ```bash
-php artisan refactor:factory --test_dir tests/Feature
-```
-
----
-
-By default, `app/Models` is the base directory for model classes.
-
-If you want to change the model directory, you can do that by using the `--model_dir` option.
-
-```bash
-php artisan refactor:factory --model_dir app/Models/ForTest
+php artisan refactor:factory --dir tests/Feature
 ```
 
 ---
