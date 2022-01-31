@@ -1,6 +1,6 @@
 # Laravel-Factory-Refactor
 
-[![Packagist Version](https://img.shields.io/packagist/v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/wadakatu/laravel-factory-refactor?label=packagist)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)
 
