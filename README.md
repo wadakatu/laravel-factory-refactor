@@ -24,7 +24,7 @@ To refactor the style of factory call from helper to static method, run the arti
 php artisan refactor:factory
 ```
 
----
+## Options
 
 By default, all factory call under `tests/` directory are the target of refactoring.
 
@@ -32,6 +32,26 @@ If you want to change the target directory, you can do that by using the `--dir`
 
 ```bash
 php artisan refactor:factory --dir tests/Feature
+```
+
+---
+
+By default, `Test\\` namespace is the target of refactoring.
+
+If you want to change the target namespace, you can do that by using the `--namespace` option.
+
+```bash
+php artisan refactor:factory --namespace App\ --dir app/Models;
+```
+
+---
+
+There are some files which do not have certain namespace.
+
+If you do not need to use namespace to refactor your files, you can use `--no_namespace` option.
+
+```bash
+php artisan refactor:factory --no_namespace --dir database/seeds
 ```
 
 ---

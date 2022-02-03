@@ -5,7 +5,6 @@ namespace Wadakatu\LaravelFactoryRefactor\Console;
 use Exception;
 use SplFileInfo;
 use ReflectionClass;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Filesystem\Filesystem;
@@ -27,11 +26,22 @@ class RefactorFactoryCommand extends Command
      */
     protected $description = 'refactor the style of factory.';
 
+    /**
+     * target directory
+     *
+     * @var string
+     */
     private $dir;
 
-    private $namespace = 'Tests\\';
+    /**
+     * target namespace
+     *
+     * @var string
+     */
+    private $namespace;
 
     private $files;
+
 
     /**
      * Create a new command instance.
@@ -53,17 +63,16 @@ class RefactorFactoryCommand extends Command
     public function handle()
     {
         $this->dir = $this->option('dir') ?? 'tests';
+        $this->namespace = $this->option('namespace') ?? 'Tests\\';
+        $shouldUseNamespace = $this->option('no_namespace');
 
-        $tests = $this->loadTests();
-        $this->info(count($tests) . " Tests Found.");
+        $tests = $this->loadFiles();
+        $this->info(count($tests) . " Files Found.");
 
         foreach ($tests as $test) {
-            if (!Str::contains($test, ['test', 'Test', 'TEST'])) {
-                $this->comment('Not a test file. Skipped. ' . $test);
-                continue;
-            }
+            $className = $shouldUseNamespace ? class_basename($test) : $test;
             try {
-                $reflection = new ReflectionClass($test);
+                $reflection = new ReflectionClass($className);
                 $fileName = $reflection->getFileName();
                 $content = File::get($fileName);
                 $replaceContent = $this->replaceFactoryStyleToClassBased($content);
@@ -85,11 +94,13 @@ class RefactorFactoryCommand extends Command
     protected function getOptions(): array
     {
         return [
-            ['dir', 'D', InputOption::VALUE_OPTIONAL, 'The test directory'],
+            ['dir', 'D', InputOption::VALUE_OPTIONAL, 'Select a directory you want.'],
+            ['no_namespace', 'W', InputOption::VALUE_NONE, 'Work with a class without namespace.'],
+            ['namespace', 'N', InputOption::VALUE_OPTIONAL, 'Set specific namespace.'],
         ];
     }
 
-    protected function loadTests(): array
+    protected function loadFiles(): array
     {
         if (!file_exists($this->laravel->basePath($this->dir))) {
             $this->error('Test directory does not exists.');
