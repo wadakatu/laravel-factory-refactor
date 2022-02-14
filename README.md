@@ -36,12 +36,12 @@ php artisan refactor:factory --dir tests/Feature
 
 ---
 
-By default, `Test\\` namespace is the target of refactoring.
+By default, `Tests\\` namespace is the target of refactoring.
 
 If you want to change the target namespace, you can do that by using the `--namespace` option.
 
 ```bash
-php artisan refactor:factory --namespace App\ --dir app/Models;
+php artisan refactor:factory --namespace App\\Models\\ --dir app/Models;
 ```
 
 ---
