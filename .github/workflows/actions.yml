@@ -1,0 +1,22 @@
+name: PHP Unit && Feature Test
+
+on: [push]
+
+jobs:
+  PHPUnit:
+    name: unit-test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run test suite
+        run: vendor/bin/phpunit
