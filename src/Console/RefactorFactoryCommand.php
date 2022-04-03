@@ -103,7 +103,7 @@ class RefactorFactoryCommand extends Command
     protected function loadFiles(): array
     {
         if (!file_exists($this->laravel->basePath($this->dir))) {
-            $this->error('Test directory does not exists.');
+            $this->error('Selected directory does not exists.');
 
             return [];
         }
@@ -131,13 +131,17 @@ class RefactorFactoryCommand extends Command
     {
         return [
             '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\)/',
-            '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\,\s*([0-9]*)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z0-9,\\\\]+)::class\s*\,\s*([$a-zA-Z0-9\'\[\]]*)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z,\\\\]+)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z0-9]+)\s*\,\s*([$a-zA-Z0-9\'\[\]]*)\s*\)/',
         ];
     }
 
     protected function createPregReplaceArr(): array
     {
         return [
+            '$1' . "::factory()",
+            '$1' . "::factory()->count($2)",
             '$1' . "::factory()",
             '$1' . "::factory()->count($2)",
         ];
