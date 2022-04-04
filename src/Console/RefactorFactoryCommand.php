@@ -40,6 +40,7 @@ class RefactorFactoryCommand extends Command
      */
     private $namespace;
 
+    /** @var Filesystem $files */
     private $files;
 
 
@@ -64,15 +65,13 @@ class RefactorFactoryCommand extends Command
     {
         $this->dir = $this->option('dir') ?? 'tests';
         $this->namespace = $this->option('namespace') ?? 'Tests\\';
-        $shouldUseNamespace = $this->option('no_namespace');
 
         $tests = $this->loadFiles();
         $this->info(count($tests) . " Files Found.");
 
         foreach ($tests as $test) {
-            $className = $shouldUseNamespace ? class_basename($test) : $test;
             try {
-                $reflection = new ReflectionClass($className);
+                $reflection = new ReflectionClass($test);
                 $fileName = $reflection->getFileName();
                 $content = File::get($fileName);
                 $replaceContent = $this->replaceFactoryStyleToClassBased($content);
@@ -95,7 +94,6 @@ class RefactorFactoryCommand extends Command
     {
         return [
             ['dir', 'D', InputOption::VALUE_OPTIONAL, 'Select a directory you want.'],
-            ['no_namespace', 'W', InputOption::VALUE_NONE, 'Work with a class without namespace.'],
             ['namespace', 'N', InputOption::VALUE_OPTIONAL, 'Set specific namespace.'],
         ];
     }
@@ -108,18 +106,18 @@ class RefactorFactoryCommand extends Command
             return [];
         }
 
-        return array_map(function (SplFIleInfo $file) {
+        return array_map(function (SplFileInfo $file) {
             return str_replace(
                 ['/', DIRECTORY_SEPARATOR, lcfirst($this->namespace)],
                 ['\\', '\\', $this->namespace],
-                $this->formatPath($file->getPath(), basename($file->getFilename(), '.php'))
+                $this->formatPath($this->namespace, $file->getRelativePath(), basename($file->getFilename(), '.php'))
             );
         }, $this->files->allFiles($this->dir));
     }
 
     protected function formatPath(string ...$paths): string
     {
-        return implode(DIRECTORY_SEPARATOR, $paths);
+        return implode(DIRECTORY_SEPARATOR, array_filter($paths));
     }
 
     protected function replaceFactoryStyleToClassBased(string $content): string
