@@ -41,7 +41,7 @@ By default, `Tests\\` namespace is the target of refactoring.
 If you want to change the target namespace, you can do that by using the `--namespace` option.
 
 ```bash
-php artisan refactor:factory --namespace App\\Models\\ --dir app/Models;
+php artisan refactor:factory --dir app/Models　--namespace App\\Models
 ```
 
 ---
