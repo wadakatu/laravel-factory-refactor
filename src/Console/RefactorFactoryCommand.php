@@ -64,14 +64,14 @@ class RefactorFactoryCommand extends Command
     public function handle()
     {
         $this->dir = $this->option('dir') ?? 'tests';
-        $this->namespace = $this->option('namespace') ?? 'Tests\\';
+        $this->namespace = $this->option('namespace');
 
-        $tests = $this->loadFiles();
-        $this->info(count($tests) . " Files Found.");
+        $files = $this->loadFiles();
+        $this->info(count($files) . " Files Found.");
 
-        foreach ($tests as $test) {
+        foreach ($files as $file) {
             try {
-                $reflection = new ReflectionClass($test);
+                $reflection = new ReflectionClass($file);
                 $fileName = $reflection->getFileName();
                 $content = File::get($fileName);
                 $replaceContent = $this->replaceFactoryStyleToClassBased($content);
@@ -82,7 +82,7 @@ class RefactorFactoryCommand extends Command
                 File::put($fileName, $replaceContent);
                 $this->info("Factory style changed. " . basename($fileName));
             } catch (Exception $e) {
-                $this->comment("Could not analyze class $test.\nException: {$e->getMessage()}");
+                $this->comment("Could not analyze class $file.\nException: {$e->getMessage()}");
                 continue;
             }
         }
@@ -107,15 +107,25 @@ class RefactorFactoryCommand extends Command
         }
 
         return array_map(function (SplFileInfo $file) {
+            $paths = $this->namespace
+                ? [
+                    $this->namespace,
+                    $file->getRelativePath(),
+                    basename($file->getFilename(), '.php'),
+                ]
+                : [
+                    $file->getPath(),
+                    basename($file->getFilename(), '.php'),
+                ];
             return str_replace(
-                ['/', DIRECTORY_SEPARATOR, lcfirst($this->namespace)],
-                ['\\', '\\', $this->namespace],
-                $this->formatPath($this->namespace, $file->getRelativePath(), basename($file->getFilename(), '.php'))
+                ['/', DIRECTORY_SEPARATOR, 'tests\\'],
+                ['\\', '\\', 'Tests\\'],
+                $this->formatPath($paths),
             );
         }, $this->files->allFiles($this->dir));
     }
 
-    protected function formatPath(string ...$paths): string
+    protected function formatPath(array $paths): string
     {
         return implode(DIRECTORY_SEPARATOR, array_filter($paths));
     }
