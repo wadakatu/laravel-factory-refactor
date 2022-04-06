@@ -41,17 +41,7 @@ By default, `Tests\\` namespace is the target of refactoring.
 If you want to change the target namespace, you can do that by using the `--namespace` option.
 
 ```bash
-php artisan refactor:factory --namespace App\\Models\\ --dir app/Models;
-```
-
----
-
-There are some files which do not have certain namespace.
-
-If you do not need to use namespace to refactor your files, you can use `--no_namespace` option.
-
-```bash
-php artisan refactor:factory --no_namespace --dir database/seeds
+php artisan refactor:factory --dir app/Models　--namespace App\\Models
 ```
 
 ---
@@ -64,6 +54,8 @@ php artisan refactor:factory --no_namespace --dir database/seeds
         factory(App\Models\User::class)->make();
         factory(User::class, 10)->make();
         factory(App\Models\User::class, 10)->make();
+        factory($model)->make();
+        factory(User::class, $count['user'])->make();
 ```
 ### After
 ```phpt
@@ -71,6 +63,8 @@ php artisan refactor:factory --no_namespace --dir database/seeds
         App\Models\User::factory()->make();
         User::factory()->count(10)->make();
         App\Models\User::factory()->count(10)->make();
+        $model::factory()->make();
+        User::factory()->count($count['user'])->make();
 ```
 
 ## License

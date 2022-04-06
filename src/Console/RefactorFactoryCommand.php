@@ -40,6 +40,7 @@ class RefactorFactoryCommand extends Command
      */
     private $namespace;
 
+    /** @var Filesystem $files */
     private $files;
 
 
@@ -63,16 +64,14 @@ class RefactorFactoryCommand extends Command
     public function handle()
     {
         $this->dir = $this->option('dir') ?? 'tests';
-        $this->namespace = $this->option('namespace') ?? 'Tests\\';
-        $shouldUseNamespace = $this->option('no_namespace');
+        $this->namespace = $this->option('namespace');
 
-        $tests = $this->loadFiles();
-        $this->info(count($tests) . " Files Found.");
+        $files = $this->loadFiles();
+        $this->info(count($files) . " Files Found.");
 
-        foreach ($tests as $test) {
-            $className = $shouldUseNamespace ? class_basename($test) : $test;
+        foreach ($files as $file) {
             try {
-                $reflection = new ReflectionClass($className);
+                $reflection = new ReflectionClass($file);
                 $fileName = $reflection->getFileName();
                 $content = File::get($fileName);
                 $replaceContent = $this->replaceFactoryStyleToClassBased($content);
@@ -83,7 +82,7 @@ class RefactorFactoryCommand extends Command
                 File::put($fileName, $replaceContent);
                 $this->info("Factory style changed. " . basename($fileName));
             } catch (Exception $e) {
-                $this->comment("Could not analyze class $test.\nException: {$e->getMessage()}");
+                $this->comment("Could not analyze class $file.\nException: {$e->getMessage()}");
                 continue;
             }
         }
@@ -95,7 +94,6 @@ class RefactorFactoryCommand extends Command
     {
         return [
             ['dir', 'D', InputOption::VALUE_OPTIONAL, 'Select a directory you want.'],
-            ['no_namespace', 'W', InputOption::VALUE_NONE, 'Work with a class without namespace.'],
             ['namespace', 'N', InputOption::VALUE_OPTIONAL, 'Set specific namespace.'],
         ];
     }
@@ -103,23 +101,33 @@ class RefactorFactoryCommand extends Command
     protected function loadFiles(): array
     {
         if (!file_exists($this->laravel->basePath($this->dir))) {
-            $this->error('Test directory does not exists.');
+            $this->error('Selected directory does not exists.');
 
             return [];
         }
 
-        return array_map(function (SplFIleInfo $file) {
+        return array_map(function (SplFileInfo $file) {
+            $paths = $this->namespace
+                ? [
+                    $this->namespace,
+                    $file->getRelativePath(),
+                    basename($file->getFilename(), '.php'),
+                ]
+                : [
+                    $file->getPath(),
+                    basename($file->getFilename(), '.php'),
+                ];
             return str_replace(
-                ['/', DIRECTORY_SEPARATOR, lcfirst($this->namespace)],
-                ['\\', '\\', $this->namespace],
-                $this->formatPath($file->getPath(), basename($file->getFilename(), '.php'))
+                ['/', DIRECTORY_SEPARATOR, 'tests\\'],
+                ['\\', '\\', 'Tests\\'],
+                $this->formatPath($paths),
             );
         }, $this->files->allFiles($this->dir));
     }
 
-    protected function formatPath(string ...$paths): string
+    protected function formatPath(array $paths): string
     {
-        return implode(DIRECTORY_SEPARATOR, $paths);
+        return implode(DIRECTORY_SEPARATOR, array_filter($paths));
     }
 
     protected function replaceFactoryStyleToClassBased(string $content): string
@@ -131,13 +139,17 @@ class RefactorFactoryCommand extends Command
     {
         return [
             '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\)/',
-            '/factory\(\s*([a-zA-Z,\\\\]+)::class\s*\,\s*([0-9]*)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z0-9,\\\\]+)::class\s*\,\s*([$a-zA-Z0-9\'\[\]]*)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z,\\\\]+)\s*\)/',
+            '/factory\(\s*([$\[\]\'a-zA-Z0-9]+)\s*\,\s*([$a-zA-Z0-9\'\[\]]*)\s*\)/',
         ];
     }
 
     protected function createPregReplaceArr(): array
     {
         return [
+            '$1' . "::factory()",
+            '$1' . "::factory()->count($2)",
             '$1' . "::factory()",
             '$1' . "::factory()->count($2)",
         ];

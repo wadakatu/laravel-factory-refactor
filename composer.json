@@ -19,9 +19,18 @@
         "illuminate/console": "^8.0|^9.0",
         "illuminate/filesystem": "^8.0|^9.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^6.24"
+    },
     "autoload": {
         "psr-4": {
             "Wadakatu\\LaravelFactoryRefactor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wadakatu\\LaravelFactoryRefactor\\Tests\\": "tests/"
         }
     },
     "extra": {
