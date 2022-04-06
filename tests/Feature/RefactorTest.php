@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Wadakatu\LaravelFactoryRefactor\Tests\Feature;
 
 use Illuminate\Filesystem\Filesystem;
-use Orchestra\Testbench\TestCase as TestCase;
+use Orchestra\Testbench\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Wadakatu\LaravelFactoryRefactor\Console\RefactorFactoryCommand;
 
