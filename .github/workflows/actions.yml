@@ -8,7 +8,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php-version: ['7.3', '7.4', '8.0', '8.1' ]
+
     steps:
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
       - name: Checkout
         uses: actions/checkout@v2
 
