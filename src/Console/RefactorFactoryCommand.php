@@ -61,7 +61,7 @@ class RefactorFactoryCommand extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $this->dir = $this->option('dir') ?? 'tests';
         $this->namespace = $this->option('namespace');

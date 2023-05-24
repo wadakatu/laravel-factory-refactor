@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wadakatu\LaravelFactoryRefactor\Tests\Files;
+namespace Wadakatu\Tests\Files;
 
 class RefactorTarget
 {
