@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wadakatu\LaravelFactoryRefactor\Tests\Feature;
+namespace Wadakatu\Tests\Feature;
 
 use Illuminate\Filesystem\Filesystem;
 use Orchestra\Testbench\TestCase;
@@ -48,7 +48,7 @@ class RefactorTest extends TestCase
         $this->commandTester->execute(
             [
                 '--dir' => 'tests/Files',
-                '--namespace' => 'Wadakatu\LaravelFactoryRefactor\Tests\Files'
+                '--namespace' => 'Wadakatu\Tests\Files'
             ]
         );
 
