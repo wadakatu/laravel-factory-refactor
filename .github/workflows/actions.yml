@@ -1,4 +1,4 @@
-name: PHP Unit && Feature Test
+name: PHP Unit
 
 on: [push]
 
