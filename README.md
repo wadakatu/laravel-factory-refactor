@@ -10,7 +10,7 @@ With this package, you can save plenty of time and focus on other important thin
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require wadakatu/laravel-factory-refactor --dev
