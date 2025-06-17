@@ -1,35 +1,36 @@
 name: Build & Deploy Docs
-
-# docs 配下に変更があったとき / 手動 / デフォルト branch 更新時に実行
 on:
   push:
     branches: [ main ]
-    paths:   [ 'docs/**' ]
+    paths: [ 'docs/**', '.github/workflows/pages.yml' ]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write        # GitHub Pages へ書き込む権限
-  id-token: write     # OIDC で認証
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # （将来ビルドするならここで npm ci && npm run build などを挿入）
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # ① Jekyll で Markdown→HTML
+      - uses: actions/jekyll-build-pages@v1     # 公式アクション
         with:
-          # 今は docs フォルダをそのまま配信
-          path: 'docs'
+          source: ./docs                        # 元フォルダ
+          destination: ./_site                  # 出力先
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # ② Pages 用 Artifact にアップロード
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: ./_site }
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/deploy-pages@v4
