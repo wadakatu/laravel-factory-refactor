@@ -1,0 +1,35 @@
+name: Build & Deploy Docs
+
+# docs 配下に変更があったとき / 手動 / デフォルト branch 更新時に実行
+on:
+  push:
+    branches: [ main ]
+    paths:   [ 'docs/**' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write        # GitHub Pages へ書き込む権限
+  id-token: write     # OIDC で認証
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # （将来ビルドするならここで npm ci && npm run build などを挿入）
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 今は docs フォルダをそのまま配信
+          path: 'docs'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
