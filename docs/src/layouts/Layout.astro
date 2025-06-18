@@ -1,75 +1,47 @@
-```astro
 ---
-// Layout.astro
-interface Props {
+export interface Props {
   title: string;
-  description: string;
-  children: Astro.ComponentChildren;
+  description?: string;
 }
 
-const { title, description, children } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content={description} />
-  <title>{title}</title>
-  <style>
-    :root {
-      --primary-color: #007bff;
-      --secondary-color: #6c757d;
-      --accent-color: #28a745;
-      --background-color: #f8f9fa;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--background-color);
-      color: var(--secondary-color);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    footer {
-      background-color: var(--secondary-color);
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-    @media (min-width: 768px) {
-      main {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>{title}</h1>
-  </header>
-  <main>
-    {children}
-  </main>
-  <footer>
-    <p>&copy; {new Date().getFullYear()} Laravel Factory Refactor</p>
-  </footer>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || "AI-generated project site"} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-```
+
+<style>
+  :root {
+    --primary: #3490dc;
+    --secondary: #ffed4a;
+    --accent: #e3342f;
+    --background: #f8fafc;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Open Sans, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--background);
+    min-height: 100vh;
+  }
+</style>

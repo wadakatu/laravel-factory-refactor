@@ -1,43 +1,82 @@
-```astro
 ---
-import Layout from '../components/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 
-const readmeContent = `
-# Laravel Factory Refactor
+// This will be replaced with actual data
+const repoData = {{REPO_DATA}};
+const { repo, prs, readme, issues } = repoData;
 
-このプロジェクトは、Laravel 8.x、9.x、10.xにおけるファクトリー呼び出しのスタイルをヘルパーから静的メソッドにリファクタリングすることを目的としています。
-
-## 特徴
-- 簡単に使える静的メソッド
-- 最新のLaravelバージョンに対応
-- 開発者向けのライブラリ
-`;
+const stats = {
+  stars: repo.stargazers_count || 0,
+  forks: repo.forks_count || 0,
+  issues: issues?.length || 0
+};
 ---
 
-<Layout>
+<Layout title={`${repo.name} - Project Dashboard`} description={repo.description}>
   <Hero 
-    title="Laravel Factory Refactor" 
-    description="Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x." 
-    stars={1} 
-    forks={0} 
+    title={repo.name}
+    description={repo.description}
+    stats={stats}
   />
   
-  <section class="readme-section">
-    <h2>READMEの一部</h2>
-    <p>{readmeContent}</p>
+  <Features prs={prs || []} />
+  
+  <section class="about">
+    <div class="container">
+      <h2>About This Project</h2>
+      <div class="readme-content">
+        <p>{readme ? readme.slice(0, 500) + '...' : 'No description available.'}</p>
+      </div>
+    </div>
   </section>
-
-  <Features />
+  
+  <footer>
+    <div class="container">
+      <p>🤖 Generated with AI-powered GitLyte ✨</p>
+    </div>
+  </footer>
 </Layout>
 
 <style>
-  .readme-section {
-    background-color: var(--background);
+  .about {
+    padding: 3rem 0;
+    background: #f8fafc;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  .readme-content {
+    background: white;
     padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  footer p {
+    margin: 0;
+    opacity: 0.9;
   }
 </style>
-```

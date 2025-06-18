@@ -1,79 +1,65 @@
-```css
-/* グローバルスタイル設定 */
+/* Global Styles for AI-Generated Site */
+
+:root {
+  --primary: #3490dc;
+  --secondary: #ffed4a;
+  --accent: #e3342f;
+  --background: #f8fafc;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Open Sans, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--background);
 }
 
-/* カラースキーム */
-.primary {
-    color: #007bff;
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto, sans-serif;
+  line-height: 1.2;
 }
 
-.secondary {
-    color: #6c757d;
+code, pre {
+  font-family: Courier New, monospace;
 }
 
-.accent {
-    color: #28a745;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-/* レイアウト設定 */
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-    padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.card {
-    background-color: white;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
 
-/* レスポンシブデザイン */
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+
+/* Responsive */
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
 }
-
-/* ボタンスタイル */
-.button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-```

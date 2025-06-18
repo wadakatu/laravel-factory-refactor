@@ -1,61 +1,78 @@
-```astro
 ---
-// Hero.astro
-const { stars, forks } = { stars: 1, forks: 0 };
+export interface Props {
+  title: string;
+  description?: string;
+  stats: {
+    stars: number;
+    forks: number;
+    issues: number;
+  };
+}
+
+const { title, description, stats } = Astro.props;
 ---
 
-<section class="hero" style="background-color: var(--background); padding: 2rem 0;">
+<section class="hero">
   <div class="container">
-    <div class="grid">
-      <div class="hero-content">
-        <h1 class="hero-title" style="color: var(--primary); animation: fadeIn 1s;">
-          laravel-factory-refactor
-        </h1>
-        <p class="hero-description" style="color: var(--secondary); animation: fadeIn 1.5s;">
-          Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.
-        </p>
-        <div class="stats" style="animation: fadeIn 2s;">
-          <span class="stat" style="color: var(--accent);">
-            ⭐ {stars} Stars
-          </span>
-          <span class="stat" style="color: var(--accent);">
-            🍴 {forks} Forks
-          </span>
-        </div>
-      </div>
+    <h1>{title}</h1>
+    <p class="subtitle">{description || 'An amazing project'}</p>
+    <div class="stats">
+      <span class="stat">⭐ {stats.stars}</span>
+      <span class="stat">🍴 {stats.forks}</span>
+      <span class="stat">📊 {stats.issues} issues</span>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 4rem 0;
     text-align: center;
   }
-  .grid {
-    display: grid;
-    place-items: center;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-  .hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .hero-description {
-    font-size: 1.25rem;
+
+  h1 {
+    font-size: 3rem;
     margin-bottom: 1rem;
+    font-weight: 700;
+    font-family: Roboto, sans-serif;
   }
+
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
   .stats {
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
+
   .stat {
-    margin: 0 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
   }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
     }
-    to {
-      opacity: 1;
+    
+    .stats {
+      gap: 1rem;
     }
   }
 </style>
-```

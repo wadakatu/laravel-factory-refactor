@@ -1,52 +1,81 @@
-```astro
 ---
-const recentPRs = [
-  {
-    title: "Update README.md",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/23",
-    author: {
-      login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
-    },
-    createdAt: "2025-06-18T10:26:31Z",
-  },
-  {
-    title: "Update README.md",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/22",
-    author: {
-      login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
-    },
-    createdAt: "2025-06-18T09:36:46Z",
-  },
-  {
-    title: "Update README.md",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/21",
-    author: {
-      login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
-    },
-    createdAt: "2025-06-18T07:55:47Z",
-  },
-];
+export interface Props {
+  prs: Array<{
+    title: string;
+    user: { login: string } | null;
+    merged_at: string | null;
+  }>;
+}
+
+const { prs } = Astro.props;
 ---
 
-<section style="background-color: #f8f9fa; padding: 20px;">
-  <h2 style="color: #007bff;">プロジェクトの特徴</h2>
-  <p style="color: #6c757d;">Laravel 8.x、9.x、10.xのファクトリー呼び出しスタイルをヘルパーから静的にリファクタリングします。</p>
-
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
-    {recentPRs.map(pr => (
-      <div style="border: 1px solid #6c757d; border-radius: 5px; padding: 15px; transition: transform 0.2s; background-color: white;">
-        <h3 style="font-size: 1.2em; color: #007bff;">
-          <a href={pr.url} style="text-decoration: none; color: inherit;">{pr.title}</a>
-        </h3>
-        <div style="display: flex; align-items: center;">
-          <img src={pr.author.avatar_url} alt={pr.author.login} style="border-radius: 50%; width: 30px; height: 30px; margin-right: 10px;" />
-          <span style="color: #6c757d;">by {pr.author.login} on {new Date(pr.createdAt).toLocaleDateString()}</span>
+<section class="features">
+  <div class="container">
+    <h2>Recent Pull Requests</h2>
+    <div class="pr-grid">
+      {prs.slice(0, 6).map((pr) => (
+        <div class="pr-card">
+          <h3>{pr.title}</h3>
+          <p>by {pr.user?.login || 'Unknown'}</p>
+          <span class="date">{pr.merged_at ? new Date(pr.merged_at).toLocaleDateString() : 'Unknown date'}</span>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
-```
+
+<style>
+  .features {
+    padding: 3rem 0;
+    background: white;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  .pr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pr-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: white;
+  }
+
+  .pr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .pr-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+  }
+
+  .pr-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    font-size: 0.9rem;
+    color: #a0aec0;
+  }
+</style>
