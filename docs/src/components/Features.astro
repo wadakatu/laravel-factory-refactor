@@ -1,0 +1,47 @@
+```astro
+---
+const recentPRs = [
+  {
+    title: "Update LICENSE",
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/20",
+    user: {
+      login: "wadakatu",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+    },
+    created_at: "2025-06-18",
+  },
+  {
+    title: "Update README.md",
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/19",
+    user: {
+      login: "wadakatu",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+    },
+    created_at: "2025-06-18",
+  },
+  {
+    title: "Update .gitignore",
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/18",
+    user: {
+      login: "wadakatu",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+    },
+    created_at: "2025-06-18",
+  },
+];
+---
+
+<section class="features" style="background-color: #ffffff; padding: 2rem;">
+  <h2 style="color: #667eea;">プロジェクトの特徴</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+    {recentPRs.map(pr => (
+      <div class="feature-card" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; transition: transform 0.2s; cursor: pointer;" onMouseOver={() => (this.style.transform = 'scale(1.02)')} onMouseOut={() => (this.style.transform = 'scale(1)')}>
+        <img src={pr.user.avatar_url} alt={pr.user.login} style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: 0.5rem;" />
+        <h3 style="color: #764ba2;">{pr.title}</h3>
+        <p style="color: #555;">作成日: {pr.created_at}</p>
+        <a href={pr.url} style="color: #f093fb; text-decoration: underline;">詳細を見る</a>
+      </div>
+    ))}
+  </div>
+</section>
+```
