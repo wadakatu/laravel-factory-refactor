@@ -11,7 +11,7 @@ This project aims to refactor the style of factory calls from helper to static i
 
 ## Installation
 
-To install the package, use Composer:
+You can install this package via composer:
 
 \`\`\`bash
 composer require your-vendor/laravel-factory-refactor
@@ -19,7 +19,7 @@ composer require your-vendor/laravel-factory-refactor
 
 ## Usage
 
-Once installed, you can start using the static factory calls in your models.
+Here is how you can use the refactored factory in your Laravel application.
 `;
 ---
 
@@ -27,19 +27,21 @@ Once installed, you can start using the static factory calls in your models.
   <Hero 
     title="Laravel Factory Refactor"
     description="Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x."
-    stars={1}
-    forks={0}
+    primaryColor="#3490dc"
+    secondaryColor="#ffed4a"
   />
   
-  <section class="py-5">
-    <div class="container">
-      <h2 class="text-primary">About the Project</h2>
-      <p>{readmeContent}</p>
-    </div>
+  <section class="content-section">
+    <h2>About the Project</h2>
+    <p>{readmeContent}</p>
   </section>
 
-  <Features />
+  <Features 
+    features={[
+      { title: "Modern Syntax", description: "Utilize static calls for a cleaner and more modern syntax." },
+      { title: "Compatibility", description: "Works with Laravel 8.x, 9.x, and 10.x." },
+      { title: "Easy Integration", description: "Seamlessly integrate into your existing Laravel applications." },
+    ]}
+  />
 </Layout>
 ```
-
-このコードは、指定された要件に基づいてAstroページを生成します。`Layout`、`Hero`、`Features`コンポーネントを組み合わせ、READMEの一部を表示するセクションを含んでいます。

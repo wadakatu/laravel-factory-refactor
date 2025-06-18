@@ -1,52 +1,46 @@
 ```astro
 ---
-// Features.astro
 const recentPRs = [
   {
     title: "Update README.md",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/21",
-    user: {
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/22",
+    author: {
       login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
     },
-    created_at: "2025-06-18T07:54:45Z",
+    created_at: "2025-06-18T09:29:57Z"
+  },
+  {
+    title: "Update README.md",
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/21",
+    author: {
+      login: "wadakatu",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
+    },
+    created_at: "2025-06-18T07:54:45Z"
   },
   {
     title: "Update LICENSE",
     url: "https://github.com/wadakatu/laravel-factory-refactor/pull/20",
-    user: {
+    author: {
       login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
     },
-    created_at: "2025-06-18T07:26:11Z",
-  },
-  {
-    title: "Update README.md",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/19",
-    user: {
-      login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
-    },
-    created_at: "2025-06-18T03:55:23Z",
-  },
+    created_at: "2025-06-18T07:26:11Z"
+  }
 ];
 ---
 
-<section style="background-color: #f8f9fa; padding: 2rem;">
-  <h2 style="color: #007bff;">プロジェクトの特徴</h2>
-  <p>
-    Laravel 8.x、9.x、10.xにおけるファクトリー呼び出しスタイルをヘルパーから静的メソッドにリファクタリングします。これにより、コードの可読性とメンテナンス性が向上します。
-  </p>
-  
-  <h3 style="color: #28a745;">最近のプルリクエスト</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+<section style="background-color: #f8fafc; padding: 2rem;">
+  <h2 style="color: #3490dc;">Features</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
     {recentPRs.map(pr => (
-      <div style="border: 1px solid #6c757d; border-radius: 5px; padding: 1rem; transition: transform 0.2s;">
-        <a href={pr.url} style="text-decoration: none; color: #007bff;">
-          <h4>{pr.title}</h4>
-          <p>作成者: <img src={pr.user.avatar_url} alt={pr.user.login} style="width: 20px; height: 20px; border-radius: 50%;"/> {pr.user.login}</p>
-          <small>作成日: {new Date(pr.created_at).toLocaleDateString()}</small>
-        </a>
+      <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; background-color: white; transition: transform 0.2s;">
+        <h3 style="color: #e3342f;">
+          <a href={pr.url} style="text-decoration: none; color: inherit;">{pr.title}</a>
+        </h3>
+        <p>Submitted by <strong>{pr.author.login}</strong></p>
+        <p><small>Created on {new Date(pr.created_at).toLocaleDateString()}</small></p>
       </div>
     ))}
   </div>

@@ -1,83 +1,74 @@
 ```css
-/* グローバルCSS */
-
-:root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --accent-color: #28a745;
-    --background-color: #f8f9fa;
-}
-
+/* グローバルスタイル設定 */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
-    color: var(--secondary-color);
+    background-color: #f8fafc;
+    color: #333;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: var(--primary-color);
-    margin: 0;
-    padding: 0.5rem 0;
-}
-
+/* リンクスタイル */
 a {
-    color: var(--primary-color);
+    color: #3490dc;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--accent-color);
+    color: #e3342f;
 }
 
+/* ヘッダー */
+header {
+    background-color: #3490dc;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* コンテンツ */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
 }
 
-.button {
-    background-color: var(--primary-color);
-    color: white;
+/* セクション */
+section {
+    margin-bottom: 2rem;
+}
+
+/* ボタン */
+button {
+    background-color: #ffed4a;
+    color: #333;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.button:hover {
-    background-color: var(--accent-color);
+button:hover {
+    background-color: #e3342f;
+    transform: scale(1.05);
 }
 
-.card {
-    background-color: white;
-    border: 1px solid var(--secondary-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
+/* レスポンシブデザイン */
 @media (max-width: 768px) {
     .container {
+        padding: 1rem;
+    }
+
+    header {
         padding: 0.5rem;
     }
 
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .button {
+    button {
         width: 100%;
+        padding: 0.75rem;
     }
 }
 ```

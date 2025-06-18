@@ -1,57 +1,49 @@
 ```astro
 ---
 // Hero.astro
-const stars = 1;
-const forks = 0;
-const issues = 0; // Assuming issues are not provided, set to 0
+const { stars, forks, issues } = { stars: 1, forks: 0, issues: 0 };
 ---
+
+<section class="hero bg-background text-primary py-20">
+  <div class="container mx-auto text-center">
+    <h1 class="text-5xl font-bold mb-4 animate__animated animate__fadeInDown">
+      laravel-factory-refactor
+    </h1>
+    <p class="text-xl mb-8 animate__animated animate__fadeInUp">
+      Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.
+    </p>
+    
+    <div class="stats flex justify-center space-x-8">
+      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold">{stars}</h2>
+        <p class="text-lg">Stars</p>
+      </div>
+      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold">{forks}</h2>
+        <p class="text-lg">Forks</p>
+      </div>
+      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
+        <h2 class="text-3xl font-semibold">{issues}</h2>
+        <p class="text-lg">Issues</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
   .hero {
-    background-color: var(--background);
-    padding: 2rem;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: #f8fafc;
   }
-  .hero:hover {
-    transform: scale(1.02);
+  .bg-secondary {
+    background-color: #ffed4a;
   }
-  .title {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
+  .text-primary {
+    color: #3490dc;
   }
-  .description {
-    font-size: 1.25rem;
-    color: var(--secondary);
-    margin-bottom: 2rem;
-  }
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  }
-  .stat {
-    background-color: var(--accent);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  .stat:hover {
-    background-color: darkgreen;
+  .text-background {
+    color: #f8fafc;
   }
 </style>
-
-<div class="hero">
-  <h1 class="title">laravel-factory-refactor</h1>
-  <p class="description">Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.</p>
-  <div class="stats">
-    <div class="stat">⭐ {stars}</div>
-    <div class="stat">🍴 {forks}</div>
-    <div class="stat">🔧 {issues}</div>
-  </div>
-</div>
 ```
+
+このコードは、指定されたデザインスタイルとアニメーション効果を含むHeroコンポーネントを生成します。プロジェクト名、説明、統計情報（スター、フォーク、イシュー）が視覚的に表示されます。

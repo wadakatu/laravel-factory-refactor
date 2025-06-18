@@ -13,45 +13,39 @@ const { title, description, children } = Astro.props;
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={description} />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
   <title>{title}</title>
   <style>
     :root {
-      --primary: #007bff;
-      --secondary: #6c757d;
-      --accent: #28a745;
-      --background: #f8f9fa;
+      --primary: #3490dc;
+      --secondary: #ffed4a;
+      --accent: #e3342f;
+      --background: #f8fafc;
     }
-
     body {
       font-family: Arial, sans-serif;
       background-color: var(--background);
-      color: var(--secondary);
+      color: #333;
       margin: 0;
       padding: 0;
       line-height: 1.6;
     }
-
     header {
       background-color: var(--primary);
       color: white;
       padding: 1rem;
       text-align: center;
     }
-
     main {
       padding: 2rem;
     }
-
     footer {
       text-align: center;
       padding: 1rem;
       background-color: var(--secondary);
-      color: white;
     }
-
     @media (max-width: 600px) {
       main {
         padding: 1rem;
@@ -67,7 +61,7 @@ const { title, description, children } = Astro.props;
     {children}
   </main>
   <footer>
-    <p>&copy; 2023 laravel-factory-refactor</p>
+    <p>&copy; {new Date().getFullYear()} Laravel Factory Refactor</p>
   </footer>
 </body>
 </html>
