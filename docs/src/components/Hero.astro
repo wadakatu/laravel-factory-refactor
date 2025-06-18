@@ -3,58 +3,55 @@
 // Hero.astro
 const stars = 1;
 const forks = 0;
-const issues = 0; // Assuming you want to include issues as well
+const issues = 0; // Assuming issues are not provided, set to 0
 ---
 
 <style>
   .hero {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: var(--background);
+    background-color: var(--background);
     padding: 2rem;
     text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
   }
-
   .hero:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
   }
-
+  .title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .description {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+  }
   .stats {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-top: 1.5rem;
   }
-
   .stat {
-    background: var(--accent);
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
   }
-
   .stat:hover {
-    transform: scale(1.05);
-  }
-
-  :root {
-    --primary: #667eea;
-    --secondary: #764ba2;
-    --accent: #f093fb;
-    --background: #ffffff;
+    background-color: darkgreen;
   }
 </style>
 
 <div class="hero">
-  <h1>{`laravel-factory-refactor`}</h1>
-  <p>{`Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.`}</p>
+  <h1 class="title">laravel-factory-refactor</h1>
+  <p class="description">Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.</p>
   <div class="stats">
-    <div class="stat">{`Stars: ${stars}`}</div>
-    <div class="stat">{`Forks: ${forks}`}</div>
-    <div class="stat">{`Issues: ${issues}`}</div>
+    <div class="stat">⭐ {stars}</div>
+    <div class="stat">🍴 {forks}</div>
+    <div class="stat">🔧 {issues}</div>
   </div>
 </div>
 ```

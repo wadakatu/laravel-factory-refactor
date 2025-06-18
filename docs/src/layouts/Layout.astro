@@ -19,57 +19,56 @@ const { title, description, children } = Astro.props;
   <title>{title}</title>
   <style>
     :root {
-      --primary-color: #667eea;
-      --secondary-color: #764ba2;
-      --accent-color: #f093fb;
-      --background-color: #ffffff;
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --accent: #28a745;
+      --background: #f8f9fa;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background-color: var(--background-color);
+      background-color: var(--background);
+      color: var(--secondary);
       margin: 0;
       padding: 0;
-      color: #333;
       line-height: 1.6;
     }
 
-    .hero {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    header {
+      background-color: var(--primary);
       color: white;
-      padding: 2rem;
+      padding: 1rem;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .content {
+    main {
       padding: 2rem;
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        padding: 1rem;
-      }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--secondary);
+      color: white;
+    }
 
-      .content {
+    @media (max-width: 600px) {
+      main {
         padding: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
+  <header>
     <h1>{title}</h1>
-    <p>{description}</p>
   </header>
-  <main class="content">
+  <main>
     {children}
   </main>
+  <footer>
+    <p>&copy; 2023 laravel-factory-refactor</p>
+  </footer>
 </body>
 </html>
 ```

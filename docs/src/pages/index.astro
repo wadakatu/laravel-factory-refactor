@@ -4,39 +4,42 @@ import Layout from '../components/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 
-const projectInfo = {
-  name: "laravel-factory-refactor",
-  description: "Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.",
-  stars: 1,
-  forks: 0,
-};
+const readmeContent = `
+# Laravel Factory Refactor
+
+This project aims to refactor the style of factory calls from helper to static in Laravel 8.x, 9.x, and 10.x. 
+
+## Installation
+
+To install the package, use Composer:
+
+\`\`\`bash
+composer require your-vendor/laravel-factory-refactor
+\`\`\`
+
+## Usage
+
+Once installed, you can start using the static factory calls in your models.
+`;
 ---
 
 <Layout>
   <Hero 
-    title={projectInfo.name} 
-    subtitle={projectInfo.description} 
-    stars={projectInfo.stars} 
-    forks={projectInfo.forks} 
+    title="Laravel Factory Refactor"
+    description="Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x."
+    stars={1}
+    forks={0}
   />
-
-  <section class="features-section">
-    <h2>Features</h2>
-    <Features />
+  
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-primary">About the Project</h2>
+      <p>{readmeContent}</p>
+    </div>
   </section>
 
-  <section class="readme-section">
-    <h2>README Overview</h2>
-    <p>
-      This project aims to refactor the style of factory calls in Laravel, transitioning from helper functions to static methods. 
-      It supports Laravel versions 8.x, 9.x, and 10.x, providing a more modern and streamlined approach to factory usage.
-    </p>
-  </section>
+  <Features />
 </Layout>
 ```
 
-### 説明
-- `Layout`コンポーネントで全体のレイアウトを構成。
-- `Hero`コンポーネントでプロジェクト名と説明を表示。
-- `Features`コンポーネントで機能を紹介するセクションを追加。
-- READMEの一部を表示するセクションを設け、プロジェクトの目的を簡潔に説明。
+このコードは、指定された要件に基づいてAstroページを生成します。`Layout`、`Hero`、`Features`コンポーネントを組み合わせ、READMEの一部を表示するセクションを含んでいます。
