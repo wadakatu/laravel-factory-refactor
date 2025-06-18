@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>laravel-factory-refactor - Project Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>laravel-factory-refactor</h1>
+            <p class="subtitle">Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.</p>
+            <div class="stats">
+                <span class="stat">⭐ 1</span>
+                <span class="stat">🍴 0</span>
+                <span class="stat">📊 10 issues</span>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="recent-activity">
+            <h2>Recent Pull Requests</h2>
+            <div class="pr-grid">
+                
+                    <div class="pr-card">
+                        <h3>Update README.md</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+                    <div class="pr-card">
+                        <h3>delete files</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+                    <div class="pr-card">
+                        <h3>Update README.md</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+                    <div class="pr-card">
+                        <h3>Update FactoryRefactorServiceProvider.php</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+                    <div class="pr-card">
+                        <h3>add actions/jekyll-build-pages</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+                    <div class="pr-card">
+                        <h3>Update actions.yml</h3>
+                        <p>by wadakatu</p>
+                        <span class="date">2025/6/18</span>
+                    </div>
+                
+            </div>
+        </section>
+        
+        <section class="about">
+            <h2>About</h2>
+            <div class="readme-content">
+                [![GitHub release (latest by date)](https://img.shields.io/github/v/release/wadakatu/laravel-factory-refactor?label=packagist)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
+[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)
+
+This package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x...
+
+With this package, you can save plenty of time and focus on other important things.
+
+## Installation
+
+Install the package via composer:
+
+```bash
+composer require wadakatu/laravel-factory-refactor --dev
+```
+
+## How to Use
+
+To refactor the style of factory call from helper to static method, run the artisan command:
+
+```bash
+php artisan refactor:factory
+```
+
+## Options
+
+By default, all factory call under `tests/` directory are the target of refactoring.
+
+If you want to change the target directory, you can do that by using the `--dir` option.
+
+```bash
+php artisan refactor:factory --dir tests/Feature
+```
+
+---
+
+By default, `Tests\\` namespace is the target of refactoring.
+
+If you want to change the target namespace, you can do that by using the `--namespace` option.
+
+```bash
+php artisan refactor:factory --dir app/Models　--namespace App\\Models
+```
+
+---
+
+## Example
+
+### Before
+```phpt
+        factory(User::class)->make();
+        factory(App\Models\User::class)->make();
+        factory(User::class, 10)->make();
+        factory(App\Models\User::class, 10)->make();
+        factory($model)->make();
+        factory(User::class, $count['user'])->make();
+```
+### After
+```phpt
+        User::factory()->make();
+        App\Models\User::factory()->make();
+        User::factory()->count(10)->make();
+        App\Models\User::factory()->count(10)->make();
+        $model::factory()->make();
+        User::factory()->count($count['user'])->make();
+```
+
+## License
+
+The MIT License (MIT). Please see [license file](LICENSE.md) for more information.
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>Generated with GitLyte ✨</p>
+        </div>
+    </footer>
+</body>
+</html>
