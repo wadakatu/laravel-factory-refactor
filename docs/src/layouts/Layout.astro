@@ -15,40 +15,47 @@ const { title, description, children } = Astro.props;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content={description}>
+  <meta name="description" content={description} />
   <title>{title}</title>
   <style>
     :root {
-      --primary: #3490dc;
-      --secondary: #ffed4a;
-      --accent: #e3342f;
-      --background: #f8fafc;
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --accent-color: #28a745;
+      --background-color: #f8f9fa;
     }
     body {
       font-family: Arial, sans-serif;
-      background-color: var(--background);
-      color: #333;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      background-color: var(--background-color);
+      color: var(--secondary-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     header {
-      background-color: var(--primary);
+      background-color: var(--primary-color);
       color: white;
       padding: 1rem;
       text-align: center;
     }
     main {
-      padding: 2rem;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
     }
     footer {
+      background-color: var(--secondary-color);
+      color: white;
       text-align: center;
       padding: 1rem;
-      background-color: var(--secondary);
     }
-    @media (max-width: 600px) {
+    @media (min-width: 768px) {
       main {
-        padding: 1rem;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>

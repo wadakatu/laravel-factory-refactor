@@ -3,44 +3,48 @@
 const recentPRs = [
   {
     title: "Update README.md",
+    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/23",
+    author: {
+      login: "wadakatu",
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
+    },
+    createdAt: "2025-06-18T10:26:31Z",
+  },
+  {
+    title: "Update README.md",
     url: "https://github.com/wadakatu/laravel-factory-refactor/pull/22",
     author: {
       login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
     },
-    created_at: "2025-06-18T09:29:57Z"
+    createdAt: "2025-06-18T09:36:46Z",
   },
   {
     title: "Update README.md",
     url: "https://github.com/wadakatu/laravel-factory-refactor/pull/21",
     author: {
       login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
+      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4",
     },
-    created_at: "2025-06-18T07:54:45Z"
+    createdAt: "2025-06-18T07:55:47Z",
   },
-  {
-    title: "Update LICENSE",
-    url: "https://github.com/wadakatu/laravel-factory-refactor/pull/20",
-    author: {
-      login: "wadakatu",
-      avatar_url: "https://avatars.githubusercontent.com/u/72595463?v=4"
-    },
-    created_at: "2025-06-18T07:26:11Z"
-  }
 ];
 ---
 
-<section style="background-color: #f8fafc; padding: 2rem;">
-  <h2 style="color: #3490dc;">Features</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+<section style="background-color: #f8f9fa; padding: 20px;">
+  <h2 style="color: #007bff;">プロジェクトの特徴</h2>
+  <p style="color: #6c757d;">Laravel 8.x、9.x、10.xのファクトリー呼び出しスタイルをヘルパーから静的にリファクタリングします。</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
     {recentPRs.map(pr => (
-      <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; background-color: white; transition: transform 0.2s;">
-        <h3 style="color: #e3342f;">
+      <div style="border: 1px solid #6c757d; border-radius: 5px; padding: 15px; transition: transform 0.2s; background-color: white;">
+        <h3 style="font-size: 1.2em; color: #007bff;">
           <a href={pr.url} style="text-decoration: none; color: inherit;">{pr.title}</a>
         </h3>
-        <p>Submitted by <strong>{pr.author.login}</strong></p>
-        <p><small>Created on {new Date(pr.created_at).toLocaleDateString()}</small></p>
+        <div style="display: flex; align-items: center;">
+          <img src={pr.author.avatar_url} alt={pr.author.login} style="border-radius: 50%; width: 30px; height: 30px; margin-right: 10px;" />
+          <span style="color: #6c757d;">by {pr.author.login} on {new Date(pr.createdAt).toLocaleDateString()}</span>
+        </div>
       </div>
     ))}
   </div>

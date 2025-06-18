@@ -7,41 +7,37 @@ import Features from '../components/Features.astro';
 const readmeContent = `
 # Laravel Factory Refactor
 
-This project aims to refactor the style of factory calls from helper to static in Laravel 8.x, 9.x, and 10.x. 
+このプロジェクトは、Laravel 8.x、9.x、10.xにおけるファクトリー呼び出しのスタイルをヘルパーから静的メソッドにリファクタリングすることを目的としています。
 
-## Installation
-
-You can install this package via composer:
-
-\`\`\`bash
-composer require your-vendor/laravel-factory-refactor
-\`\`\`
-
-## Usage
-
-Here is how you can use the refactored factory in your Laravel application.
+## 特徴
+- 簡単に使える静的メソッド
+- 最新のLaravelバージョンに対応
+- 開発者向けのライブラリ
 `;
 ---
 
 <Layout>
   <Hero 
-    title="Laravel Factory Refactor"
-    description="Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x."
-    primaryColor="#3490dc"
-    secondaryColor="#ffed4a"
+    title="Laravel Factory Refactor" 
+    description="Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x." 
+    stars={1} 
+    forks={0} 
   />
   
-  <section class="content-section">
-    <h2>About the Project</h2>
+  <section class="readme-section">
+    <h2>READMEの一部</h2>
     <p>{readmeContent}</p>
   </section>
 
-  <Features 
-    features={[
-      { title: "Modern Syntax", description: "Utilize static calls for a cleaner and more modern syntax." },
-      { title: "Compatibility", description: "Works with Laravel 8.x, 9.x, and 10.x." },
-      { title: "Easy Integration", description: "Seamlessly integrate into your existing Laravel applications." },
-    ]}
-  />
+  <Features />
 </Layout>
+
+<style>
+  .readme-section {
+    background-color: var(--background);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
 ```

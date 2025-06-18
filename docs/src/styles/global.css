@@ -1,74 +1,79 @@
 ```css
 /* グローバルスタイル設定 */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8fafc;
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* リンクスタイル */
+/* カラースキーム */
+.primary {
+    color: #007bff;
+}
+
+.secondary {
+    color: #6c757d;
+}
+
+.accent {
+    color: #28a745;
+}
+
 a {
-    color: #3490dc;
+    color: #007bff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #e3342f;
+    color: #0056b3;
 }
 
-/* ヘッダー */
-header {
-    background-color: #3490dc;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-
-/* コンテンツ */
+/* レイアウト設定 */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px;
 }
 
-/* セクション */
-section {
-    margin-bottom: 2rem;
+.card {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ボタン */
-button {
-    background-color: #ffed4a;
-    color: #333;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #e3342f;
-    transform: scale(1.05);
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
+        grid-template-columns: 1fr;
     }
+}
 
-    header {
-        padding: 0.5rem;
-    }
+/* ボタンスタイル */
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-    button {
-        width: 100%;
-        padding: 0.75rem;
-    }
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 ```

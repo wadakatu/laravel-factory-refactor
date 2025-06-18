@@ -1,30 +1,27 @@
 ```astro
 ---
 // Hero.astro
-const { stars, forks, issues } = { stars: 1, forks: 0, issues: 0 };
+const { stars, forks } = { stars: 1, forks: 0 };
 ---
 
-<section class="hero bg-background text-primary py-20">
-  <div class="container mx-auto text-center">
-    <h1 class="text-5xl font-bold mb-4 animate__animated animate__fadeInDown">
-      laravel-factory-refactor
-    </h1>
-    <p class="text-xl mb-8 animate__animated animate__fadeInUp">
-      Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.
-    </p>
-    
-    <div class="stats flex justify-center space-x-8">
-      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
-        <h2 class="text-3xl font-semibold">{stars}</h2>
-        <p class="text-lg">Stars</p>
-      </div>
-      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
-        <h2 class="text-3xl font-semibold">{forks}</h2>
-        <p class="text-lg">Forks</p>
-      </div>
-      <div class="stat bg-secondary p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 animate__animated animate__fadeIn">
-        <h2 class="text-3xl font-semibold">{issues}</h2>
-        <p class="text-lg">Issues</p>
+<section class="hero" style="background-color: var(--background); padding: 2rem 0;">
+  <div class="container">
+    <div class="grid">
+      <div class="hero-content">
+        <h1 class="hero-title" style="color: var(--primary); animation: fadeIn 1s;">
+          laravel-factory-refactor
+        </h1>
+        <p class="hero-description" style="color: var(--secondary); animation: fadeIn 1.5s;">
+          Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.
+        </p>
+        <div class="stats" style="animation: fadeIn 2s;">
+          <span class="stat" style="color: var(--accent);">
+            ⭐ {stars} Stars
+          </span>
+          <span class="stat" style="color: var(--accent);">
+            🍴 {forks} Forks
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -32,18 +29,33 @@ const { stars, forks, issues } = { stars: 1, forks: 0, issues: 0 };
 
 <style>
   .hero {
-    background-color: #f8fafc;
+    text-align: center;
   }
-  .bg-secondary {
-    background-color: #ffed4a;
+  .grid {
+    display: grid;
+    place-items: center;
   }
-  .text-primary {
-    color: #3490dc;
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
-  .text-background {
-    color: #f8fafc;
+  .hero-description {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .stats {
+    font-size: 1rem;
+  }
+  .stat {
+    margin: 0 1rem;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 </style>
 ```
-
-このコードは、指定されたデザインスタイルとアニメーション効果を含むHeroコンポーネントを生成します。プロジェクト名、説明、統計情報（スター、フォーク、イシュー）が視覚的に表示されます。
