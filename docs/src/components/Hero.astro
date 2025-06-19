@@ -14,8 +14,8 @@ const { title, description, stats } = Astro.props;
 
 <section class="hero">
   <div class="container">
-    <h1>{title}</h1>
-    <p class="subtitle">{description || 'An amazing project'}</p>
+    <h1>laravel-factory-refactor</h1>
+    <p class="subtitle">Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.</p>
     <div class="stats">
       <span class="stat">⭐ {stats.stars}</span>
       <span class="stat">🍴 {stats.forks}</span>
@@ -30,6 +30,7 @@ const { title, description, stats } = Astro.props;
     color: white;
     padding: 4rem 0;
     text-align: center;
+    
   }
 
   .container {
@@ -42,7 +43,6 @@ const { title, description, stats } = Astro.props;
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    font-family: Roboto, sans-serif;
   }
 
   .subtitle {
@@ -61,7 +61,7 @@ const { title, description, stats } = Astro.props;
   .stat {
     background: rgba(255, 255, 255, 0.2);
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     font-weight: 500;
     backdrop-filter: blur(10px);
   }

@@ -1,113 +1,52 @@
-以下は、指定された要件に基づいて作成されたAstroレイアウトコンポーネントのサンプルです。このレイアウトは、進化する開発の未来をテーマに、革新的で洗練されたサイトデザインを目指しています。
-
-```astro
 ---
-const siteTitle = "進化する開発の未来";
-const navigationLinks = [
-  { name: "ホーム", href: "#home" },
-  { name: "特徴", href: "#features" },
-  { name: "プロジェクト", href: "#projects" },
-  { name: "お問い合わせ", href: "#contact" },
-];
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
 ---
 
-<html lang="ja">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{siteTitle}</title>
-    <style>
-      :root {
-        --primary-color: #0A74DA;
-        --secondary-color: #F5B700;
-        --accent-color: #0F4C81;
-        --background-color: #FFFFFF;
-        --surface-color: #F8F9FA;
-        --text-primary: #333333;
-        --text-secondary: #555555;
-        --text-accent: #0A74DA;
-      }
-
-      body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: var(--background-color);
-        color: var(--text-primary);
-        margin: 0;
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        background-color: var(--surface-color);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-      }
-
-      nav a {
-        color: var(--text-primary);
-        text-decoration: none;
-        margin: 0 1rem;
-        font-weight: bold;
-      }
-
-      nav a:hover {
-        color: var(--text-accent);
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Roboto', sans-serif;
-        font-weight: 700;
-      }
-
-      .content {
-        padding: 2rem;
-      }
-
-      .highlighted {
-        font-family: 'Fira Code', monospace;
-        background-color: var(--surface-color);
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        color: var(--accent-color);
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || "Project showcase"} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <div>
-          <a href="#home">{siteTitle}</a>
-        </div>
-        <div>
-          {navigationLinks.map(link => (
-            <a href={link.href}>{link.name}</a>
-          ))}
-        </div>
-      </nav>
-    </header>
-    <main class="content">
-      <!-- セクションコンテンツをここに追加 -->
-      <section id="home">
-        <h1>進化する開発の未来へようこそ</h1>
-        <p>最新の技術と革新を探求する冒険に出発しましょう。</p>
-      </section>
-    </main>
+    <slot />
   </body>
 </html>
-```
 
-### 解説
+<style is:global>
+  :root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --accent: #f093fb;
+    --background: #ffffff;
+    --text: #2d3748;
+    --font-heading: Inter, sans-serif;
+    --font-body: system-ui, sans-serif;
+    --border-radius: 8px;
+  }
 
-- **カラーパレットとタイポグラフィ**: 要件に応じてスタイルが設定されています。テーマに合った色合いとフォントを使用しています。
-- **ナビゲーションバー**: `sticky` ヘッダーとして設置され、ページをスクロールしても常に画面上部に表示されます。
-- **コンテンツ領域**: 主なコンテンツは、`<main>` タグ内に配置されています。この中に各セクションのコンテンツを追加できます。
-- **コードの強調表示**: `highlighted` クラスは、コードブロックを強調表示するために使用されています。
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-このレイアウトは、シングルページとして設計されており、ナビゲーションリンクをクリックすると指定されたセクションにスクロールします。プロジェクト「laravel-factory-refactor」のコンテンツに合わせて、セクションを追加・調整してください。
+  body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--background);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+  }
+</style>
