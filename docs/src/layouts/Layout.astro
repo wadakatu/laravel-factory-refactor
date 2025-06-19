@@ -11,25 +11,24 @@ const { title, description } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description || "Project showcase"} />
+    <meta name="description" content={description || "AI-generated project site"} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>
     <slot />
   </body>
 </html>
 
-<style is:global>
+<style>
   :root {
-    --primary: #4CAF50;
-    --secondary: #3E8E41;
-    --accent: #FFC107;
-    --background: #F5F5F5;
-    --text: #212529;
-    --font-heading: Roboto, sans-serif;
-    --font-body: Arial, sans-serif;
-    --border-radius: 10px;
+    --primary: #2563eb;
+    --secondary: #1e40af;
+    --accent: #3b82f6;
+    --background: #ffffff;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
   }
 
   * {
@@ -39,14 +38,10 @@ const { title, description } = Astro.props;
   }
 
   body {
-    font-family: var(--font-body);
+    font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    color: var(--text);
+    color: var(--text-primary);
     background: var(--background);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
+    min-height: 100vh;
   }
 </style>

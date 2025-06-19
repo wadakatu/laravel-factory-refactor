@@ -2,7 +2,6 @@
   "name": "laravel-factory-refactor-site",
   "type": "module",
   "version": "0.0.1",
-  "description": "Showcase site for laravel-factory-refactor",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

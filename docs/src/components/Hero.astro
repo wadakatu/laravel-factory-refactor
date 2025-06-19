@@ -13,96 +13,199 @@ const { title, description, stats } = Astro.props;
 ---
 
 <section class="hero">
+  <div class="hero-background"></div>
   <div class="container">
-    <h1>Laravelユーザー向けに、factoryコールをよりモダンで効率的なスタイルにリファクタリングできるパッケージです。</h1>
-    <p class="subtitle">Laravelのファクトリーコールスタイルをモダンな静的メソッドに変換することで、コードの可読性を向上し、バージョンアップによる互換性問題を解決します。</p>
-    <div class="stats">
-      <span class="stat">⭐ {stats.stars}</span>
-      <span class="stat">🍴 {stats.forks}</span>
-      <span class="stat">📊 {stats.issues} issues</span>
+    <div class="hero-content">
+      <div class="badge">🚀 Latest Release</div>
+      <h1 class="hero-title">{title}</h1>
+      <p class="subtitle">{description || 'An innovative solution for modern development'}</p>
+      
+      <div class="cta-section">
+        <a href="#getting-started" class="cta-primary">Get Started</a>
+        <a href="#docs" class="cta-secondary">View Docs</a>
+      </div>
+      
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number">{stats.stars.toLocaleString()}</span>
+          <span class="stat-label">⭐ Stars</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{stats.forks.toLocaleString()}</span>
+          <span class="stat-label">🍴 Forks</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{stats.issues}</span>
+          <span class="stat-label">📊 Issues</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    position: relative;
+    background: var(--primary);
     color: white;
     padding: 4rem 0;
     text-align: center;
-    
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background: radial-gradient(circle at 30% 20%, var(--accent) 20%, transparent 50%),
+                radial-gradient(circle at 70% 80%, var(--secondary) 20%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
   }
 
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
-  .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-  }
-  
-  .unique-value {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    opacity: 0.95;
-    font-weight: 500;
-  }
-  
-  .benefits {
-    margin-bottom: 2rem;
-  }
-  
-  .benefits-text {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-bottom: 1rem;
-  }
-  
-  .cta-section {
-    margin-bottom: 2rem;
-  }
-  
-  .install-command {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius);
-    font-family: var(--font-code, monospace);
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .badge {
     display: inline-block;
-  }
-
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    font-weight: 500;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
   }
 
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-family: Inter, system-ui, sans-serif;
+    background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    background: var(--accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    border: 2px solid var(--accent);
+  }
+
+  .cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .stat:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(1deg); }
+    66% { transform: translate(-20px, 20px) rotate(-1deg); }
+  }
+
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
+    .hero {
+      padding: 3rem 0;
+    }
+    
+    .cta-section {
+      flex-direction: column;
+      align-items: center;
     }
     
     .stats {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 1rem;
     }
   }
