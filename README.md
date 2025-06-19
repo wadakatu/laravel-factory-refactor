@@ -4,7 +4,7 @@
 [![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)
 
-This package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x...
+This package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x....
 
 With this package, you can save plenty of time and focus on other important things.
 
