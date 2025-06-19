@@ -1,0 +1,86 @@
+```astro
+---
+// TypeScriptの型定義
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props as Props;
+---
+
+<div class="feature-card" role="region" aria-labelledby="feature-title">
+  <img src={icon} alt="Feature Icon" aria-hidden="true" />
+  <h3 id="feature-title">{title}</h3>
+  <p>{description}</p>
+</div>
+
+<style>
+  :root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --accent-color: #F5A623;
+    --background-color: #F4F4F6;
+    --surface-color: #FFFFFF;
+    --text-primary-color: #333333;
+    --text-secondary-color: #666666;
+    --text-accent-color: #4A90E2;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Source Code Pro', monospace;
+    --body-font-size: 16px;
+    --body-line-height: 1.5;
+    --border-radius: 8px;
+    --transition-duration: 0.3s;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-card {
+    border: 1px solid var(--text-secondary-color);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    background-color: var(--surface-color);
+    transition: transform var(--transition-duration);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .feature-card:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-primary-color);
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
+    color: var(--text-secondary-color);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .feature-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+</style>
+```
+
+このAstroコンポーネントは、指定された仕様に基づいて作成されており、TypeScriptの型安全性を確保しつつ、テーマに対応したCSS変数を活用しています。また、モダンなCSS技術を使って、アクセシブルでパフォーマンスに優れたコンポーネントを実現しています。

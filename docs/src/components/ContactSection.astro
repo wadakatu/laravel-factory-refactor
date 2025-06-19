@@ -1,0 +1,66 @@
+Sure! Here's an Astro component file based on your specifications:
+
+```astro
+---
+export interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Section</h2>
+  <!-- You can add more contact-related content here based on the `data` prop -->
+</section>
+
+<style>
+  :root {
+    --color-primary: #4A90E2;
+    --color-secondary: #50E3C2;
+    --color-accent: #F5A623;
+    --color-background: #F4F4F6;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-accent: #4A90E2;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-size-body: 16px;
+    --line-height-body: 1.5;
+  }
+
+  .contact {
+    padding: 2rem;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text-accent);
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .contact {
+      padding: 1rem;
+    }
+  }
+</style>
+```
+
+### Explanation:
+1. **Astro Component Syntax**: The component uses Astro's syntax with frontmatter (`---`) to define props and import them.
+2. **TypeScript**: The `Props` interface is defined and used to ensure type safety.
+3. **CSS Variables**: CSS custom properties (`--color-*`, `--font-*`) are used for theming.
+4. **Modern CSS**: Flexbox is used to structure the layout, and the component can be extended to use Grid if needed.
+5. **Accessibility**: The `aria-labelledby` attribute links the section to the heading for better accessibility.
+6. **Performance**: The styles are scoped to the component, and CSS variables help in managing theme changes efficiently.

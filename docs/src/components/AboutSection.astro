@@ -1,0 +1,70 @@
+```astro
+---
+// TypeScriptの型定義をインポート
+export interface Props { 
+  data: any; 
+}
+
+// Propsを受け取る
+const { data } = Astro.props;
+---
+
+<section class="about" aria-labelledby="about-heading">
+  <h2 id="about-heading" class="about-heading">Section</h2>
+  <div class="content">
+    {data.content}
+  </div>
+</section>
+
+<style>
+  :root {
+    --color-primary: #4A90E2;
+    --color-secondary: #50E3C2;
+    --color-accent: #F5A623;
+    --color-background: #F4F4F6;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-accent: #4A90E2;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Source Code Pro', monospace;
+    --font-weight-heading: 700;
+    --font-size-body: 16px;
+    --line-height-body: 1.5;
+  }
+
+  .about {
+    padding: 2rem;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .about-heading {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    .about {
+      padding: 1rem;
+    }
+  }
+</style>
+```
+
+このAstroコンポーネントは、指定された仕様を満たし、テーマ対応やアクセシビリティを考慮したデザインを提供します。CSS変数を活用することで、デザインシステムに基づく色やフォント設定を簡単に変更可能にしています。Flexboxを使用して、コンテンツを整列させ、レスポンシブデザインを実現しています。

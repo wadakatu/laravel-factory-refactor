@@ -1,0 +1,59 @@
+```astro
+---
+interface Props {
+  overlayColor: string;
+  animationDuration: number;
+}
+
+const { overlayColor, animationDuration } = Astro.props as Props;
+---
+
+<div class="animated-overlay" style={`--overlay-color: ${overlayColor}; --animation-duration: ${animationDuration}s;`}></div>
+
+<style>
+  :root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --accent-color: #F5A623;
+    --background-color: #F4F4F6;
+    --surface-color: #FFFFFF;
+    --text-primary-color: #333333;
+    --text-secondary-color: #666666;
+    --text-accent-color: #4A90E2;
+  }
+
+  .animated-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: var(--overlay-color, var(--primary-color));
+    animation: slideIn var(--animation-duration, 1s) forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .animated-overlay {
+      opacity: 0.3;
+    }
+  }
+</style>
+```
+
+### 説明
+1. **TypeScript型定義**: `interface Props` を使用して、`overlayColor` と `animationDuration` の型を指定しています。
+2. **CSS変数**: カラーパレットをCSS変数として定義し、テーマの対応を行っています。
+3. **アニメーション**: `slideIn` アニメーションを使用し、オーバーレイの動きを実現しています。
+4. **レスポンシブデザイン**: メディアクエリを使用して、画面幅768px以下のデバイスでオーバーレイの不透明度を変更しています。
+5. **スタイルの一貫性**: サイトのデザインシステムに基づいた配色を使用しています。
+6. **パフォーマンス最適化**: 必要最小限のCSSとJavaScriptを使用し、パフォーマンスを最適化しています。

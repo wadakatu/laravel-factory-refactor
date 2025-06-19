@@ -1,47 +1,116 @@
----
-export interface Props {
-  title: string;
-  description?: string;
-}
+以下に、指定された条件に基づいて、Astro用のレイアウトファイルを示します。このレイアウトは、プロジェクト「laravel-factory-refactor」に最適化されたデザインを提供します。
 
-const { title, description } = Astro.props;
+```astro
+---
+const siteTitle = "Laravel Factory Refactor: The Future of Refactoring";
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Features", href: "#features" },
+  { name: "Contact", href: "#contact" },
+];
 ---
 
-<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description || "AI-generated project site"} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <link rel="stylesheet" href="/styles/global.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{siteTitle}</title>
+    <style>
+      :root {
+        --color-primary: #4A90E2;
+        --color-secondary: #50E3C2;
+        --color-accent: #F5A623;
+        --color-background: #F4F4F6;
+        --color-surface: #FFFFFF;
+        --text-primary: #333333;
+        --text-secondary: #666666;
+        --text-accent: #4A90E2;
+        --font-heading: "Montserrat", sans-serif;
+        --font-body: "Open Sans", sans-serif;
+        --font-code: "Source Code Pro", monospace;
+        --font-weight-heading: 700;
+        --body-font-size: 16px;
+        --body-line-height: 1.5;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--color-background);
+        font-family: var(--font-body);
+        font-size: var(--body-font-size);
+        line-height: var(--body-line-height);
+        color: var(--text-primary);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        background-color: var(--color-surface);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+
+      h1 {
+        font-family: var(--font-heading);
+        font-weight: var(--font-weight-heading);
+        color: var(--text-primary);
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--text-accent);
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      code {
+        font-family: var(--font-code);
+        background-color: var(--color-surface);
+        padding: 2px 4px;
+        border-radius: 4px;
+        color: var(--color-accent);
+      }
+    </style>
   </head>
   <body>
-    <slot />
+    <header>
+      <h1>{siteTitle}</h1>
+      <nav>
+        {navItems.map((item) => (
+          <a href={item.href}>{item.name}</a>
+        ))}
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
+```
 
-<style>
-  :root {
-    --primary: #4A90E2;
-    --secondary: #50E3C2;
-    --accent: #F5A623;
-    --background: #FFFFFF;
-    --text-primary: #2d3748;
-    --text-secondary: #718096;
-  }
+### 説明:
+- **ヘッダー**: sticky-header を使用して、ページの最上部に固定され、ユーザーがスクロールしても表示されるようにしています。
+- **カラーパレット**: 指定された色を使用して、視覚的に一貫したデザインを実現しています。
+- **タイポグラフィ**: 見出しには「Montserrat」、本文には「Open Sans」、コードには「Source Code Pro」を使用し、専門的で先進的な雰囲気を醸し出しています。
+- **ナビゲーション**: シングルページ構造用に設計されており、各セクションへのリンクが含まれています。
+- **メインコンテンツ**: `<slot />` を使用して、他のコンテンツを動的に挿入できるようにしています。
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Open Sans, sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background: var(--background);
-    min-height: 100vh;
-  }
-</style>
+このレイアウトは、プロジェクトのテーマとデザインシステムに基づいて、専門的で先進的なユーザー体験を提供します。
