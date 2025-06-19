@@ -1,86 +1,84 @@
 ```astro
 ---
-// TypeScriptの型定義
-interface Props {
+interface FeatureCardProps {
   icon: string;
   title: string;
   description: string;
+  onHover: () => void;
 }
 
-const { icon, title, description } = Astro.props as Props;
+export const FeatureCard = ({
+  icon,
+  title,
+  description,
+  onHover,
+}: FeatureCardProps) => (
+  <div class="feature-card" onMouseEnter={onHover}>
+    <img src={icon} alt={title} />
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </div>
+);
 ---
-
-<div class="feature-card" role="region" aria-labelledby="feature-title">
-  <img src={icon} alt="Feature Icon" aria-hidden="true" />
-  <h3 id="feature-title">{title}</h3>
-  <p>{description}</p>
-</div>
 
 <style>
   :root {
-    --primary-color: #4A90E2;
-    --secondary-color: #50E3C2;
-    --accent-color: #F5A623;
-    --background-color: #F4F4F6;
-    --surface-color: #FFFFFF;
+    --primary-color: #0a74da;
+    --secondary-color: #f5b700;
+    --accent-color: #0f4c81;
+    --background-color: #ffffff;
+    --surface-color: #f8f9fa;
     --text-primary-color: #333333;
-    --text-secondary-color: #666666;
-    --text-accent-color: #4A90E2;
-    --font-heading: 'Montserrat', sans-serif;
+    --text-secondary-color: #555555;
+    --text-accent-color: #0a74da;
+    --font-heading: 'Roboto', sans-serif;
     --font-body: 'Open Sans', sans-serif;
-    --font-code: 'Source Code Pro', monospace;
+    --font-code: 'Fira Code', monospace;
     --body-font-size: 16px;
     --body-line-height: 1.5;
     --border-radius: 8px;
     --transition-duration: 0.3s;
-    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .feature-card {
-    border: 1px solid var(--text-secondary-color);
+    border: 1px solid var(--surface-color);
     border-radius: var(--border-radius);
     padding: 16px;
-    background-color: var(--surface-color);
-    transition: transform var(--transition-duration);
-    box-shadow: var(--box-shadow);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
+    transition: transform var(--transition-duration);
+    background-color: var(--background-color);
+    color: var(--text-primary-color);
+    font-family: var(--font-body);
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
   }
 
   .feature-card:hover {
     transform: scale(1.05);
   }
 
-  img {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 12px;
+  .feature-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
   }
 
-  h3 {
+  .feature-card h2 {
     font-family: var(--font-heading);
     font-weight: 700;
-    color: var(--text-primary-color);
-    margin-bottom: 8px;
+    color: var(--text-accent-color);
   }
 
-  p {
-    font-family: var(--font-body);
-    font-size: var(--body-font-size);
-    line-height: var(--body-line-height);
+  .feature-card p {
     color: var(--text-secondary-color);
-    margin: 0;
   }
 
   @media (max-width: 768px) {
     .feature-card {
       width: 100%;
-      margin: 10px 0;
     }
   }
 </style>
 ```
 
-このAstroコンポーネントは、指定された仕様に基づいて作成されており、TypeScriptの型安全性を確保しつつ、テーマに対応したCSS変数を活用しています。また、モダンなCSS技術を使って、アクセシブルでパフォーマンスに優れたコンポーネントを実現しています。
+This Astro component file includes TypeScript type definitions, uses CSS custom properties for theming, and ensures accessibility and performance considerations. It leverages modern CSS techniques like transitions and responsive design.

@@ -1,3 +1,5 @@
+以下は、指定された要件に基づいたAstroコンポーネントファイルです。`FeatureGrid`コンポーネントは、複数の`FeatureCard`コンポーネントをグリッドレイアウトで表示し、TypeScriptで型安全性を確保しています。また、CSS変数を活用してテーマ対応を実現しています。
+
 ```astro
 ---
 import FeatureCard from './FeatureCard.astro';
@@ -5,7 +7,7 @@ import FeatureCard from './FeatureCard.astro';
 interface Feature {
   title: string;
   description: string;
-  icon: string;
+  imageUrl: string;
 }
 
 interface Props {
@@ -16,36 +18,36 @@ const { features } = Astro.props as Props;
 ---
 
 <div class="feature-grid">
-  {features.map(feature => (
-    <FeatureCard 
-      title={feature.title} 
-      description={feature.description} 
-      icon={feature.icon} 
-    />
+  {features.map((feature) => (
+    <FeatureCard key={feature.title} {...feature} />
   ))}
 </div>
 
 <style>
   :root {
-    --color-primary: #4A90E2;
-    --color-secondary: #50E3C2;
-    --color-accent: #F5A623;
-    --color-background: #F4F4F6;
-    --color-surface: #FFFFFF;
+    --color-primary: #0A74DA;
+    --color-secondary: #F5B700;
+    --color-accent: #0F4C81;
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
     --color-text-primary: #333333;
-    --color-text-secondary: #666666;
-    --color-text-accent: #4A90E2;
-    --font-heading: 'Montserrat', sans-serif;
+    --color-text-secondary: #555555;
+    --color-text-accent: #0A74DA;
+    --font-heading: 'Roboto', sans-serif;
     --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Fira Code', monospace;
+    --font-weight-heading: 700;
     --font-size-body: 16px;
     --line-height-body: 1.5;
   }
 
   .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     background-color: var(--color-background);
+    color: var(--color-text-primary);
+    padding: 16px;
   }
 
   @media (max-width: 768px) {
@@ -53,23 +55,11 @@ const { features } = Astro.props as Props;
       grid-template-columns: 1fr;
     }
   }
-
-  /* Accessibility and Performance Enhancements */
-  .feature-grid > * {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    will-change: transform, box-shadow;
-  }
-
-  .feature-grid > *:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
 </style>
 ```
 
-### 説明
-1. **Propsの型定義**: TypeScriptの型を使用して、FeatureとPropsのインターフェースを定義しました。
-2. **CSS変数**: カラーパレットやフォントをCSS変数として定義し、テーマ対応を容易にしました。
-3. **モダンなCSS技術**: Gridを使用してレスポンシブルで柔軟なレイアウトを実現しました。メディアクエリを使用して小さな画面での表示を最適化しています。
-4. **アクセシビリティとパフォーマンス**: CSSの`transition`と`will-change`を使用して、ユーザーインタラクション時のパフォーマンスを改善しました。
-5. **ビジュアルスタイル**: ホバー時のトランスフォームとシャドウで、デザインシステムの「soft shadows」と「subtle animations」を反映しました。
+### 補足
+- `FeatureCard`コンポーネントは別途作成する必要があります。このコンポーネントでは、各フィーチャーの詳細（タイトル、説明、画像など）を表示します。
+- CSSではカスタムプロパティを使用し、デザインシステムのカラーやフォントを定義しています。
+- `Astro.props`を用いてTypeScriptによる型安全性を確保しています。
+- グリッドレイアウトを使用してレスポンシブなデザインを実現し、モバイル環境では1列レイアウトに切り替わるようにしています。

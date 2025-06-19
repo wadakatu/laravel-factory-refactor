@@ -1,116 +1,113 @@
-以下に、指定された条件に基づいて、Astro用のレイアウトファイルを示します。このレイアウトは、プロジェクト「laravel-factory-refactor」に最適化されたデザインを提供します。
+以下は、指定された要件に基づいて作成されたAstroレイアウトコンポーネントのサンプルです。このレイアウトは、進化する開発の未来をテーマに、革新的で洗練されたサイトデザインを目指しています。
 
 ```astro
 ---
-const siteTitle = "Laravel Factory Refactor: The Future of Refactoring";
-const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Features", href: "#features" },
-  { name: "Contact", href: "#contact" },
+const siteTitle = "進化する開発の未来";
+const navigationLinks = [
+  { name: "ホーム", href: "#home" },
+  { name: "特徴", href: "#features" },
+  { name: "プロジェクト", href: "#projects" },
+  { name: "お問い合わせ", href: "#contact" },
 ];
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{siteTitle}</title>
     <style>
       :root {
-        --color-primary: #4A90E2;
-        --color-secondary: #50E3C2;
-        --color-accent: #F5A623;
-        --color-background: #F4F4F6;
-        --color-surface: #FFFFFF;
+        --primary-color: #0A74DA;
+        --secondary-color: #F5B700;
+        --accent-color: #0F4C81;
+        --background-color: #FFFFFF;
+        --surface-color: #F8F9FA;
         --text-primary: #333333;
-        --text-secondary: #666666;
-        --text-accent: #4A90E2;
-        --font-heading: "Montserrat", sans-serif;
-        --font-body: "Open Sans", sans-serif;
-        --font-code: "Source Code Pro", monospace;
-        --font-weight-heading: 700;
-        --body-font-size: 16px;
-        --body-line-height: 1.5;
+        --text-secondary: #555555;
+        --text-accent: #0A74DA;
       }
 
       body {
-        margin: 0;
-        background-color: var(--color-background);
-        font-family: var(--font-body);
-        font-size: var(--body-font-size);
-        line-height: var(--body-line-height);
+        font-family: 'Open Sans', sans-serif;
+        background-color: var(--background-color);
         color: var(--text-primary);
+        margin: 0;
       }
 
       header {
         position: sticky;
         top: 0;
-        background-color: var(--color-surface);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
+        background-color: var(--surface-color);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         z-index: 1000;
       }
 
-      h1 {
-        font-family: var(--font-heading);
-        font-weight: var(--font-weight-heading);
-        color: var(--text-primary);
-      }
-
       nav {
         display: flex;
-        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
       }
 
       nav a {
+        color: var(--text-primary);
         text-decoration: none;
-        color: var(--text-secondary);
-        font-weight: 500;
-        transition: color 0.3s ease;
+        margin: 0 1rem;
+        font-weight: bold;
       }
 
       nav a:hover {
         color: var(--text-accent);
       }
 
-      main {
-        padding: 20px;
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
       }
 
-      code {
-        font-family: var(--font-code);
-        background-color: var(--color-surface);
-        padding: 2px 4px;
+      .content {
+        padding: 2rem;
+      }
+
+      .highlighted {
+        font-family: 'Fira Code', monospace;
+        background-color: var(--surface-color);
+        padding: 0.2rem 0.4rem;
         border-radius: 4px;
-        color: var(--color-accent);
+        color: var(--accent-color);
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>{siteTitle}</h1>
       <nav>
-        {navItems.map((item) => (
-          <a href={item.href}>{item.name}</a>
-        ))}
+        <div>
+          <a href="#home">{siteTitle}</a>
+        </div>
+        <div>
+          {navigationLinks.map(link => (
+            <a href={link.href}>{link.name}</a>
+          ))}
+        </div>
       </nav>
     </header>
-    <main>
-      <slot />
+    <main class="content">
+      <!-- セクションコンテンツをここに追加 -->
+      <section id="home">
+        <h1>進化する開発の未来へようこそ</h1>
+        <p>最新の技術と革新を探求する冒険に出発しましょう。</p>
+      </section>
     </main>
   </body>
 </html>
 ```
 
-### 説明:
-- **ヘッダー**: sticky-header を使用して、ページの最上部に固定され、ユーザーがスクロールしても表示されるようにしています。
-- **カラーパレット**: 指定された色を使用して、視覚的に一貫したデザインを実現しています。
-- **タイポグラフィ**: 見出しには「Montserrat」、本文には「Open Sans」、コードには「Source Code Pro」を使用し、専門的で先進的な雰囲気を醸し出しています。
-- **ナビゲーション**: シングルページ構造用に設計されており、各セクションへのリンクが含まれています。
-- **メインコンテンツ**: `<slot />` を使用して、他のコンテンツを動的に挿入できるようにしています。
+### 解説
 
-このレイアウトは、プロジェクトのテーマとデザインシステムに基づいて、専門的で先進的なユーザー体験を提供します。
+- **カラーパレットとタイポグラフィ**: 要件に応じてスタイルが設定されています。テーマに合った色合いとフォントを使用しています。
+- **ナビゲーションバー**: `sticky` ヘッダーとして設置され、ページをスクロールしても常に画面上部に表示されます。
+- **コンテンツ領域**: 主なコンテンツは、`<main>` タグ内に配置されています。この中に各セクションのコンテンツを追加できます。
+- **コードの強調表示**: `highlighted` クラスは、コードブロックを強調表示するために使用されています。
+
+このレイアウトは、シングルページとして設計されており、ナビゲーションリンクをクリックすると指定されたセクションにスクロールします。プロジェクト「laravel-factory-refactor」のコンテンツに合わせて、セクションを追加・調整してください。

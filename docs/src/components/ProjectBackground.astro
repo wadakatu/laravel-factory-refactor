@@ -1,0 +1,82 @@
+```astro
+---
+interface Props {
+  title: string;
+  backgroundText: string;
+  historicalContext: string;
+}
+
+const { title, backgroundText, historicalContext } = Astro.props as Props;
+---
+
+<div class="project-background">
+  <div class="column-left">
+    <h2>{title}</h2>
+    <p>{backgroundText}</p>
+  </div>
+  <div class="column-right">
+    <h3>歴史的背景</h3>
+    <p>{historicalContext}</p>
+  </div>
+</div>
+
+<style>
+  :root {
+    --color-primary: #0A74DA;
+    --color-secondary: #F5B700;
+    --color-accent: #0F4C81;
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
+    --color-text-primary: #333333;
+    --color-text-secondary: #555555;
+    --color-text-accent: #0A74DA;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Fira Code', monospace;
+    --font-weight-heading: 700;
+    --font-size-body: 16px;
+    --line-height-body: 1.5;
+  }
+
+  .project-background {
+    display: flex;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .column-left, .column-right {
+    flex: 1;
+    padding: 16px;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-primary);
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-heading);
+    color: var(--color-secondary);
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .project-background {
+      flex-direction: column;
+    }
+  }
+</style>
+```
+
+This Astro component is structured to meet the requirements specified in your request. It uses TypeScript for type safety, employs CSS variables for theme adaptability, and utilizes modern CSS techniques like Flexbox for layout. The component is designed with accessibility and performance in mind, adhering to the design system's color palette and typography settings.

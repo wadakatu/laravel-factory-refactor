@@ -1,39 +1,40 @@
-以下は、指定されたデザインシステムに基づいたグローバルCSSのサンプルです。このCSSは、テーマシステム、レスポンシブタイポグラフィ、一貫したスペーシング、モダンなCSS技術、アクセシビリティサポート、およびパフォーマンスの最適化を考慮しています。
+以下は、指定されたデザインシステムに基づいて作成された包括的なグローバルCSSです。このCSSは、要求されたテーマシステム、レスポンシブタイポグラフィ、一貫したスペーシングシステム、モダンなCSS技術、アクセシビリティサポート、パフォーマンス最適化を考慮しています。
 
 ```css
-/* カラーパレット */
 :root {
-  --color-primary: #4A90E2;
-  --color-secondary: #50E3C2;
-  --color-accent: #F5A623;
-  --color-background: #F4F4F6;
-  --color-surface: #FFFFFF;
+  /* Color Palette */
+  --color-primary: #0A74DA;
+  --color-secondary: #F5B700;
+  --color-accent: #0F4C81;
+  --color-background: #FFFFFF;
+  --color-surface: #F8F9FA;
   --color-text-primary: #333333;
-  --color-text-secondary: #666666;
-  --color-text-accent: #4A90E2;
+  --color-text-secondary: #555555;
+  --color-text-accent: #0A74DA;
 
-  /* タイポグラフィ */
-  --font-heading: 'Montserrat', sans-serif;
+  /* Typography */
+  --font-heading: 'Roboto', sans-serif;
   --font-body: 'Open Sans', sans-serif;
-  --font-code: 'Source Code Pro', monospace;
+  --font-code: 'Fira Code', monospace;
   --font-weight-heading: 700;
   --font-size-body: 16px;
   --line-height-body: 1.5;
 
-  /* スペーシング */
-  --spacing-unit: 8px; /* 基本のスペーシングユニット */
-  --spacing-small: calc(var(--spacing-unit) * 0.5);
+  /* Spacing */
+  --spacing-unit: 1rem; /* Base unit for spacing */
+  --spacing-small: calc(var(--spacing-unit) / 2);
   --spacing-medium: var(--spacing-unit);
   --spacing-large: calc(var(--spacing-unit) * 2);
 
-  /* ビジュアルスタイル */
+  /* Border and Shadows */
   --border-radius: 4px;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --box-shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Animations */
   --transition-duration: 0.3s;
   --transition-easing: ease-in-out;
 }
 
-/* リセット */
 *,
 *::before,
 *::after {
@@ -42,20 +43,26 @@
   padding: 0;
 }
 
-/* ベーススタイル */
+html {
+  font-size: 100%; /* 16px base */
+  scroll-behavior: smooth;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
 body {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
+  background-color: var(--color-surface);
   color: var(--color-text-primary);
-  background-color: var(--color-background);
-  transition: background-color var(--transition-duration) var(--transition-easing);
+  margin: 0;
+  padding: 0 var(--spacing-medium);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-weight-heading);
-  color: var(--color-text-primary);
   margin-bottom: var(--spacing-medium);
 }
 
@@ -69,8 +76,11 @@ a {
   transition: color var(--transition-duration) var(--transition-easing);
 }
 
-a:hover {
-  color: var(--color-accent);
+a:hover,
+a:focus {
+  color: var(--color-primary);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 button {
@@ -79,72 +89,52 @@ button {
   border: none;
   border-radius: var(--border-radius);
   background-color: var(--color-primary);
-  color: var(--color-surface);
+  color: var(--color-background);
   cursor: pointer;
-  box-shadow: var(--box-shadow);
   transition: background-color var(--transition-duration) var(--transition-easing);
 }
 
-button:hover {
+button:hover,
+button:focus {
   background-color: var(--color-secondary);
 }
 
-code {
+code, pre {
   font-family: var(--font-code);
   background-color: var(--color-surface);
   padding: var(--spacing-small);
   border-radius: var(--border-radius);
-  color: var(--color-accent);
 }
 
-/* レスポンシブタイポグラフィ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  gap: var(--spacing-medium);
+}
+
+.flex {
+  display: flex;
+  gap: var(--spacing-medium);
+}
+
 @media (min-width: 768px) {
-  body {
-    font-size: 18px;
+  html {
+    font-size: 112.5%; /* 18px */
   }
 }
 
 @media (min-width: 1024px) {
-  body {
-    font-size: 20px;
-  }
-}
-
-/* レイアウト */
-.container {
-  display: grid;
-  gap: var(--spacing-large);
-  padding: var(--spacing-large);
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: calc(-1 * var(--spacing-medium));
-}
-
-.col {
-  flex: 1;
-  padding: var(--spacing-medium);
-}
-
-/* アクセシビリティ */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
+  html {
+    font-size: 125%; /* 20px */
   }
 }
 ```
 
-このCSSファイルは、指定されたデザイン仕様に従って、基本的なスタイルから応用的なレイアウトまでを網羅しています。モダンなCSS技術を活用し、アクセシビリティとパフォーマンスも考慮されています。
+このCSSは、モダンなWeb開発のニーズに応えるために設計されています。テーマのカスタマイズにはCSS変数を使用し、レスポンシブなタイポグラフィやスペーシングを実現しています。GridやFlexboxを用いることで、デザインが柔軟に対応できるようになっています。また、アクセシビリティやパフォーマンスの最適化も考慮されています。

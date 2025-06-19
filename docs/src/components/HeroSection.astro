@@ -1,107 +1,89 @@
-Certainly! Below is a complete Astro component file for the `HeroSection` based on the specifications provided.
-
 ```astro
 ---
-import type { FunctionComponent } from 'astro';
-
-interface HeroSectionProps {
-  title: string;
-  description: string;
-  backgroundImage: string;
+// Astroのフロントマッターで型定義とPropsを設定
+interface Props {
+  projectOverview: string;
+  keyConcepts: string[];
 }
 
-const HeroSection: FunctionComponent<HeroSectionProps> = ({ title, description, backgroundImage }) => {
-  return (
-    <section class="hero-section" style={{ '--background-image': `url(${backgroundImage})` }}>
-      <div class="hero-content">
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-    </section>
-  );
-};
-
-export default HeroSection;
+const { projectOverview, keyConcepts } = Astro.props as Props;
 ---
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>{projectOverview}</h1>
+    <ul>
+      {keyConcepts.map((concept) => (
+        <li>{concept}</li>
+      ))}
+    </ul>
+  </div>
+</section>
 
 <style>
   :root {
-    --primary-color: #4A90E2;
-    --secondary-color: #50E3C2;
-    --accent-color: #F5A623;
-    --background-color: #F4F4F6;
-    --surface-color: #FFFFFF;
-    --text-primary-color: #333333;
-    --text-secondary-color: #666666;
-    --text-accent-color: #4A90E2;
-    --heading-font: 'Montserrat', sans-serif;
-    --body-font: 'Open Sans', sans-serif;
-    --code-font: 'Source Code Pro', monospace;
-    --font-size-body: 16px;
-    --line-height-body: 1.5;
+    --color-primary: #0A74DA;
+    --color-secondary: #F5B700;
+    --color-accent: #0F4C81;
+    --color-background: #FFFFFF;
+    --color-surface: #F8F9FA;
+    --color-text-primary: #333333;
+    --color-text-secondary: #555555;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Fira Code', monospace;
   }
 
-  .hero-section {
-    height: 100vh;
-    background-image: var(--background-image);
-    background-size: cover;
+  .hero {
+    background-color: var(--color-surface);
+    padding: 2rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    color: white;
-    font-family: var(--heading-font);
   }
 
   .hero-content {
-    animation: fadeIn 1s ease-in-out;
     max-width: 800px;
-    padding: 20px;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero-section {
-      height: auto;
-      padding: 20px;
-    }
-    .hero-content {
-      font-size: 1.2rem;
-    }
+    border: 1px solid var(--color-secondary);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    background-color: var(--color-background);
   }
 
   h1 {
-    font-size: 2.5rem;
-    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    font-size: 2rem; /* Moderate scale */
   }
 
-  p {
-    font-size: var(--font-size-body);
-    line-height: var(--line-height-body);
-    margin: 10px 0 0;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  /* モバイルファーストのレスポンシブデザイン */
+  @media (min-width: 768px) {
+    .hero {
+      padding: 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem; /* Larger scale for bigger screens */
+    }
   }
 </style>
 ```
 
-### Explanation:
-1. **TypeScript and Props**: TypeScript is used to define the `HeroSectionProps` interface, ensuring type safety for the component props (`title`, `description`, `backgroundImage`).
-
-2. **CSS Variables**: CSS custom properties are used for theme-based styling, ensuring consistency with the site's design system.
-
-3. **Flexbox Layout**: Flexbox is used for centering content within the `hero-section`.
-
-4. **Responsive Design**: Media queries adjust the layout and styling for smaller screens.
-
-5. **Accessibility**: The semantic HTML structure with `<h1>` and `<p>` helps with screen reader accessibility.
-
-6. **Performance**: Inline styles with CSS variables are used for dynamic background images, optimizing performance by avoiding unnecessary re-renders.
-
-This component efficiently implements the provided requirements while maintaining a clean and modern design.
+このAstroコンポーネントは、指定された仕様に基づき、プロジェクトのユニークな価値提案を伝えるための視覚的なセクションを提供します。TypeScriptを使用して型安全性を確保し、CSS変数を活用してテーマに対応しています。FlexboxとCSSグリッドを用いたモダンなレイアウト技術を採用し、アクセシビリティとパフォーマンスも考慮しています。

@@ -1,0 +1,66 @@
+Certainly! Below is an Astro component file called `FeedbackMessage.astro` based on the specifications you provided. It utilizes TypeScript for type safety, CSS variables for theme support, and modern CSS techniques like Flexbox. Accessibility and performance considerations are also integrated.
+
+```astro
+---
+interface Props {
+  message: string;
+  type: 'success' | 'error';
+}
+
+const { message, type } = Astro.props as Props;
+---
+
+<div class={`feedback-message ${type}`} role="alert" aria-live="assertive">
+  {message}
+</div>
+
+<style>
+  :root {
+    --success-bg-color: #d4edda;
+    --success-text-color: #155724;
+    --error-bg-color: #f8d7da;
+    --error-text-color: #721c24;
+    --padding: 10px;
+    --margin-top: 10px;
+    --border-radius: 4px;
+    --font-size-mobile: 14px;
+  }
+
+  .feedback-message {
+    padding: var(--padding);
+    margin-top: var(--margin-top);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .feedback-message.success {
+    background-color: var(--success-bg-color);
+    color: var(--success-text-color);
+  }
+
+  .feedback-message.error {
+    background-color: var(--error-bg-color);
+    color: var(--error-text-color);
+  }
+
+  @media (max-width: 600px) {
+    .feedback-message {
+      font-size: var(--font-size-mobile);
+    }
+  }
+</style>
+```
+
+### Key Features:
+- **TypeScript**: Ensures that `message` is a string and `type` is either `'success'` or `'error'`.
+- **CSS Variables**: Allows easy theme adjustments by changing the root variables.
+- **Flexbox**: Used for centering the content within the message box.
+- **Accessibility**: Uses `role="alert"` and `aria-live="assertive"` to ensure screen readers announce the message appropriately.
+- **Responsive Design**: Adjusts font size based on the viewport width. 
+
+This component is designed to be minimal yet effective, aligning with your site's visual style and providing a robust solution for displaying feedback messages.

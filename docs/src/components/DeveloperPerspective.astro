@@ -1,0 +1,85 @@
+```astro
+---
+import { FunctionComponent } from 'react';
+
+interface DeveloperPerspectiveProps {
+  developerName: string;
+  developerQuote: string;
+}
+
+const DeveloperPerspective: FunctionComponent<DeveloperPerspectiveProps> = ({ developerName, developerQuote }) => {
+  return (
+    <div className="developer-perspective" role="complementary">
+      <h4>開発者の視点: {developerName}</h4>
+      <blockquote>{developerQuote}</blockquote>
+    </div>
+  );
+};
+
+export default DeveloperPerspective;
+---
+
+<div class="developer-perspective">
+  <h4>開発者の視点: {developerName}</h4>
+  <blockquote>{developerQuote}</blockquote>
+</div>
+
+<style>
+  :root {
+    --primary-color: #0A74DA;
+    --secondary-color: #F5B700;
+    --accent-color: #0F4C81;
+    --background-color: #FFFFFF;
+    --surface-color: #F8F9FA;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --text-accent: #0A74DA;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-code: 'Fira Code', monospace;
+  }
+
+  .developer-perspective {
+    margin-top: 20px;
+    font-style: italic;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background-color: var(--surface-color);
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .developer-perspective h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-accent);
+  }
+
+  blockquote {
+    margin: 0;
+    padding-left: 1em;
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .developer-perspective {
+      font-size: 0.9em;
+    }
+  }
+</style>
+```
+
+### 説明
+
+1. **TypeScriptの型安全性**: コンポーネントはTypeScriptの型 (`DeveloperPerspectiveProps`) を使用して、`developerName` と `developerQuote` を適切に型定義しています。
+   
+2. **CSS変数の使用**: カラーパレットやフォントにCSS変数を使用して、テーマの柔軟性を確保しています。
+
+3. **アクセシビリティ**: `role="complementary"` を追加して、スクリーンリーダーでの理解を助けています。
+
+4. **モダンなCSS技術**: `box-shadow` と `transition` でビジュアルスタイルを強化し、メディアクエリを使用してレスポンシブデザインを実現しています。
+
+このコンポーネントは、デザインシステムの要素を取り入れ、モダンなウェブ開発のベストプラクティスに従っています。
