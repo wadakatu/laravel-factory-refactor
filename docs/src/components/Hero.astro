@@ -14,8 +14,8 @@ const { title, description, stats } = Astro.props;
 
 <section class="hero">
   <div class="container">
-    <h1>laravel-factory-refactor</h1>
-    <p class="subtitle">Refactor the style of factory call from helper to static in Laravel 8.x, 9.x, 10.x.</p>
+    <h1>Laravelプロジェクトのテストコードを簡素化し、静的メソッドへのリファクタリングをサポートする専用ライブラリ。</h1>
+    <p class="subtitle">Laravelのテストコードにおけるファクトリーメソッドの呼び出しスタイルを静的メソッドに変更し、コードの一貫性を確保します。</p>
     <div class="stats">
       <span class="stat">⭐ {stats.stars}</span>
       <span class="stat">🍴 {stats.forks}</span>
@@ -47,8 +47,39 @@ const { title, description, stats } = Astro.props;
 
   .subtitle {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     opacity: 0.9;
+  }
+  
+  .unique-value {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+    font-weight: 500;
+  }
+  
+  .benefits {
+    margin-bottom: 2rem;
+  }
+  
+  .benefits-text {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section {
+    margin-bottom: 2rem;
+  }
+  
+  .install-command {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-code, monospace);
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
   }
 
   .stats {
