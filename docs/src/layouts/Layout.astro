@@ -14,7 +14,7 @@ const { title, description } = Astro.props;
     <meta name="description" content={description || "AI-generated project site"} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    
+    <link rel="icon" type="image/png" href="https://github.com/wadakatu/laravel-factory-refactor/raw/main/assets/favicon.ico" />
     <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>
@@ -24,10 +24,10 @@ const { title, description } = Astro.props;
 
 <style>
   :root {
-    --primary: #4a90e2;
-    --secondary: #50e3c2;
-    --accent: #f5a623;
-    --background: #f7f9fc;
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --accent: #f093fb;
+    --background: #ffffff;
     --text-primary: #2d3748;
     --text-secondary: #718096;
   }
@@ -39,7 +39,7 @@ const { title, description } = Astro.props;
   }
 
   body {
-    font-family: Roboto, sans-serif;
+    font-family: system-ui, sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background: var(--background);
