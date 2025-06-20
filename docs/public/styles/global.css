@@ -1,10 +1,10 @@
 /* Global Styles for AI-Generated Site */
 
 :root {
-  --primary: #2563eb;
-  --secondary: #1e40af;
-  --accent: #3b82f6;
-  --background: #ffffff;
+  --primary: #3b82f6;
+  --secondary: #10b981;
+  --accent: #f59e0b;
+  --background: #f3f4f6;
   --text-primary: #2d3748;
   --text-secondary: #718096;
   --border: #e2e8f0;
@@ -18,19 +18,19 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Poppins, sans-serif;
   line-height: 1.2;
 }
 
 code, pre {
-  font-family: JetBrains Mono, Fira Code, monospace;
+  font-family: Fira Code, monospace;
 }
 
 .container {
