@@ -1,0 +1,16 @@
+{
+  "logo": {
+    "path": "./assets/logo.svg",
+    "alt": "laravel-factory-refactor Logo"
+  },
+  "favicon": {
+    "path": "./assets/favicon.ico"
+  },
+  "site": {
+    "theme": {
+      "primary": "#4a90e2",
+      "secondary": "#50e3c2",
+      "accent": "#f5a623"
+    }
+  }
+}
