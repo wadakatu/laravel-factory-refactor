@@ -21,11 +21,15 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     <nav class="main-nav">
       <div class="nav-brand">
         {hasLogo && logoUrl ? (
-          <div class="brand-with-logo">
-            <img src={logoUrl} alt={title + " logo"} class="brand-logo" />
-          </div>
+          <a href="./" class="brand-link">
+            <div class="brand-with-logo">
+              <img src={logoUrl} alt={title + " logo"} class="brand-logo" />
+            </div>
+          </a>
         ) : (
-          <h1>{title}</h1>
+          <a href="./" class="brand-link">
+            <h1>{title}</h1>
+          </a>
         )}
       </div>
       <div class="nav-links">
@@ -98,6 +102,11 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     flex-shrink: 0;
   }
 
+  .brand-link {
+    text-decoration: none;
+    display: block;
+  }
+
   .nav-brand h1 {
     margin: 0;
     font-size: 1.5rem;
@@ -105,6 +114,11 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     font-family: Inter, sans-serif;
     font-weight: 700;
     white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .brand-link:hover h1 {
+    color: var(--secondary);
   }
 
   .brand-with-logo {
@@ -122,7 +136,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     transition: transform 0.2s ease;
   }
 
-  .brand-logo:hover {
+  .brand-link:hover .brand-logo {
     transform: scale(1.05);
   }
 
