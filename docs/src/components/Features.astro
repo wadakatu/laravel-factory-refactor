@@ -10,7 +10,7 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"最新技術対応","description":"Laravelの最新バージョンに迅速に対応","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単なセットアップ","description":"わずか5分でセットアップ完了","highlight":"5-minute setup","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"簡単導入","description":"素早くセットアップして、すぐに使い始めることができます。","highlight":"5-minute setup","priority":10},{"icon":"🔧","title":"高性能","description":"ファクトリー呼び出しのスタイルを一括で変換し、コードメンテナンスを容易にします。","highlight":"Efficient refactoring","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -92,7 +92,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -108,110 +108,128 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   }
 
   .features-grid {
-    display: grid;
-    gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
     margin-bottom: 5rem;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    align-items: start;
+    align-items: stretch;
   }
   
   /* カード枚数別のレイアウト */
   .features-grid.grid-single {
-    grid-template-columns: 1fr;
     max-width: 350px;
   }
   
   .features-grid.grid-double {
-    grid-template-columns: repeat(2, 1fr);
     max-width: 800px;
   }
   
   .features-grid.grid-triple {
-    grid-template-columns: repeat(3, 1fr);
     max-width: 1200px;
   }
   
   .features-grid.grid-quad {
-    grid-template-columns: repeat(2, 1fr);
     max-width: 800px;
   }
   
   .features-grid.grid-multi {
-    grid-template-columns: repeat(3, 1fr);
     max-width: 1200px;
   }
   
   /* 大画面での最適化 */
   @media (min-width: 1200px) {
-    .features-grid.grid-single {
-      max-width: 320px;
-    }
-    
-    .features-grid.grid-double {
-      max-width: 740px;
-    }
-    
-    .features-grid.grid-triple {
-      max-width: 1110px;
-    }
-    
     .features-grid.grid-quad {
-      grid-template-columns: repeat(4, 1fr);
       max-width: 1480px;
-    }
-    
-    .features-grid.grid-multi {
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1110px;
     }
   }
   
   /* タブレット対応 */
   @media (max-width: 1024px) and (min-width: 769px) {
+    .features-grid.grid-triple,
     .features-grid.grid-quad,
     .features-grid.grid-multi {
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 700px;
-    }
-    
-    .features-grid.grid-triple {
-      grid-template-columns: repeat(2, 1fr);
       max-width: 700px;
     }
   }
   
-  /* モバイルでは全て1列表示 */
+  /* モバイル対応 */
   @media (max-width: 768px) {
-    .features-grid,
-    .features-grid.grid-single,
-    .features-grid.grid-double,
-    .features-grid.grid-triple,
-    .features-grid.grid-quad,
-    .features-grid.grid-multi {
-      grid-template-columns: 1fr;
+    .features-grid {
       max-width: 400px;
-      gap: 2rem;
+      gap: 1.5rem;
     }
   }
 
   .feature-card {
     background: white;
     padding: 2rem;
-    width: 100%;
+    flex: 0 0 auto;
+    width: calc(50% - 1rem);
+    min-width: 280px;
+    max-width: 350px;
     min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: hidden;
+    margin-bottom: 1rem;
     animation: slideInUp 0.6s ease forwards; opacity: 0;
+  }
+  
+  /* カード枚数に応じた幅調整 */
+  .features-grid.grid-single .feature-card {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .features-grid.grid-double .feature-card {
+    width: calc(50% - 1rem);
+    max-width: 350px;
+  }
+  
+  .features-grid.grid-triple .feature-card {
+    width: calc(33.333% - 1.33rem);
+    max-width: 320px;
+  }
+  
+  .features-grid.grid-quad .feature-card {
+    width: calc(50% - 1rem);
+    max-width: 320px;
+  }
+  
+  .features-grid.grid-multi .feature-card {
+    width: calc(33.333% - 1.33rem);
+    max-width: 320px;
+  }
+  
+  /* 大画面でのカード幅調整 */
+  @media (min-width: 1200px) {
+    .features-grid.grid-quad .feature-card {
+      width: calc(25% - 1.5rem);
+      max-width: 300px;
+    }
+  }
+  
+  /* モバイルでのカード幅調整 */
+  @media (max-width: 768px) {
+    .feature-card,
+    .features-grid.grid-single .feature-card,
+    .features-grid.grid-double .feature-card,
+    .features-grid.grid-triple .feature-card,
+    .features-grid.grid-quad .feature-card,
+    .features-grid.grid-multi .feature-card {
+      width: 100%;
+      max-width: 350px;
+    }
   }
 
   .feature-card::before {
@@ -226,7 +244,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
 
   .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
   .feature-icon {
@@ -239,7 +257,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
   }
 
   .feature-card p {
@@ -262,7 +280,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     background: white;
     padding: 3rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
