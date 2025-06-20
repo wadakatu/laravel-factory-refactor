@@ -10,7 +10,7 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"簡単導入","description":"素早くセットアップして、すぐに使い始めることができます。","highlight":"5-minute setup","priority":10},{"icon":"🔧","title":"高性能","description":"ファクトリー呼び出しのスタイルを一括で変換し、コードメンテナンスを容易にします。","highlight":"Efficient refactoring","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"シンプルな導入","description":"Composer一つで導入可能","highlight":"5-minute setup","priority":10},{"icon":"🔧","title":"カスタマイズ可能","description":"ターゲットディレクトリや名前空間を自在に設定可能","highlight":"Flexible configuration","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -166,10 +166,9 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .feature-card {
     background: white;
     padding: 2rem;
-    flex: 0 0 auto;
-    width: calc(50% - 1rem);
+    flex: 1 1 280px;
     min-width: 280px;
-    max-width: 350px;
+    max-width: 400px;
     min-height: 280px;
     display: flex;
     flex-direction: column;
@@ -187,35 +186,45 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   
   /* カード枚数に応じた幅調整 */
   .features-grid.grid-single .feature-card {
-    width: 100%;
-    max-width: 320px;
+    flex: 0 0 auto;
+    max-width: 400px;
   }
   
   .features-grid.grid-double .feature-card {
-    width: calc(50% - 1rem);
-    max-width: 350px;
+    flex: 1 1 calc(50% - 1rem);
+    max-width: 500px;
   }
   
   .features-grid.grid-triple .feature-card {
-    width: calc(33.333% - 1.33rem);
-    max-width: 320px;
+    flex: 1 1 calc(33.333% - 1.33rem);
+    max-width: 350px;
   }
   
   .features-grid.grid-quad .feature-card {
-    width: calc(50% - 1rem);
-    max-width: 320px;
+    flex: 1 1 calc(50% - 1rem);
+    max-width: 350px;
   }
   
   .features-grid.grid-multi .feature-card {
-    width: calc(33.333% - 1.33rem);
-    max-width: 320px;
+    flex: 1 1 calc(33.333% - 1.33rem);
+    max-width: 350px;
   }
   
   /* 大画面でのカード幅調整 */
   @media (min-width: 1200px) {
     .features-grid.grid-quad .feature-card {
-      width: calc(25% - 1.5rem);
-      max-width: 300px;
+      flex: 1 1 calc(25% - 1.5rem);
+      max-width: 320px;
+    }
+  }
+  
+  /* タブレットでのカード幅調整 */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .features-grid.grid-triple .feature-card,
+    .features-grid.grid-quad .feature-card,
+    .features-grid.grid-multi .feature-card {
+      flex: 1 1 calc(50% - 1rem);
+      max-width: 320px;
     }
   }
   
@@ -227,8 +236,8 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     .features-grid.grid-triple .feature-card,
     .features-grid.grid-quad .feature-card,
     .features-grid.grid-multi .feature-card {
-      width: 100%;
-      max-width: 350px;
+      flex: 1 1 100%;
+      max-width: 400px;
     }
   }
 
