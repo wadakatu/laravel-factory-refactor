@@ -7,9 +7,10 @@ export interface Props {
     forks: number;
     issues: number;
   };
+  hasReadme?: boolean;
 }
 
-const { title, description, stats } = Astro.props;
+const { title, description, stats, hasReadme } = Astro.props;
 ---
 
 <header class="site-header">
@@ -20,7 +21,7 @@ const { title, description, stats } = Astro.props;
       </div>
       <div class="nav-links">
         <a href="./" class="nav-link">🏠 Home</a>
-        {readme && <a href="./docs" class="nav-link">📖 Docs</a>}
+        {hasReadme && <a href="./docs" class="nav-link">📖 Docs</a>}
         <a href="{repo.html_url}" class="nav-link" target="_blank" rel="noopener">🔗 GitHub</a>
       </div>
     </nav>
@@ -37,7 +38,7 @@ const { title, description, stats } = Astro.props;
       
       <div class="cta-section">
         <a href="#getting-started" class="cta-primary">Get Started</a>
-        {readme && <a href="./docs" class="cta-secondary">📖 Documentation</a>}
+        {hasReadme && <a href="./docs" class="cta-secondary">📖 Documentation</a>}
         <a href="{repo.html_url}" class="cta-secondary" target="_blank" rel="noopener">🔗 GitHub</a>
       </div>
       
@@ -80,7 +81,7 @@ const { title, description, stats } = Astro.props;
     margin: 0;
     font-size: 1.25rem;
     color: var(--primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
   }
 
   .nav-links {
@@ -121,7 +122,7 @@ const { title, description, stats } = Astro.props;
     padding: 4rem 0;
     text-align: center;
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    
   }
 
   .hero-background {
@@ -157,14 +158,14 @@ const { title, description, stats } = Astro.props;
     font-size: 0.9rem;
     margin-bottom: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    
   }
 
   .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1.5rem;
     font-weight: 700;
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
     background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.8));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -197,7 +198,7 @@ const { title, description, stats } = Astro.props;
     border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
     transition: all 0.3s ease;
     border: 2px solid var(--accent);
   }
@@ -236,7 +237,7 @@ const { title, description, stats } = Astro.props;
     padding: 1.5rem 1rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    
     transition: all 0.3s ease;
   }
 
