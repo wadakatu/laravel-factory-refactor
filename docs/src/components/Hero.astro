@@ -22,7 +22,7 @@ const { title, description, stats, hasReadme } = Astro.props;
       <div class="nav-links">
         <a href="./" class="nav-link">🏠 Home</a>
         {hasReadme && <a href="./docs" class="nav-link">📖 Docs</a>}
-        <a href="{repo.html_url}" class="nav-link" target="_blank" rel="noopener">🔗 GitHub</a>
+        <a href={repo.html_url} class="nav-link" target="_blank" rel="noopener">🔗 GitHub</a>
       </div>
     </nav>
   </div>
@@ -39,7 +39,7 @@ const { title, description, stats, hasReadme } = Astro.props;
       <div class="cta-section">
         <a href="#getting-started" class="cta-primary">Get Started</a>
         {hasReadme && <a href="./docs" class="cta-secondary">📖 Documentation</a>}
-        <a href="{repo.html_url}" class="cta-secondary" target="_blank" rel="noopener">🔗 GitHub</a>
+        <a href={repo.html_url} class="cta-secondary" target="_blank" rel="noopener">🔗 GitHub</a>
       </div>
       
       <div class="stats">
@@ -119,7 +119,7 @@ const { title, description, stats, hasReadme } = Astro.props;
     position: relative;
     background: var(--primary);
     color: white;
-    padding: 4rem 0;
+    padding: 6rem 0;
     text-align: center;
     overflow: hidden;
     
