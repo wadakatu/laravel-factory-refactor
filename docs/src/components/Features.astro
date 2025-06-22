@@ -10,7 +10,7 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"効率的なリファクタリング","description":"手作業を減らし、プロジェクトの効率を最大化します。","highlight":"99.9% 時間削減","priority":10},{"icon":"🔧","title":"簡単な設定","description":"シンプルなコマンドで高度なリファクタリングを実現。","highlight":"5分で設定完了","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"時間と労力の節約","description":"自動化によってリファクタリング作業を効率化。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"直感的な使用方法","description":"簡単なコマンド操作で導入可能。","highlight":"5-minute setup","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
