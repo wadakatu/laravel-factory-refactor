@@ -16,14 +16,9 @@ export interface Props {
 const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astro.props;
 ---
 
-<!-- Minimal Layout - Simple and Clean -->
+<!-- Minimal Layout - Matches Original Template -->
 <section class="hero">
   <div class="container">
-    {hasLogo && logoUrl && (
-      <div class="logo-section">
-        <img src={logoUrl} alt={title + " logo"} class="project-logo" />
-      </div>
-    )}
     <h1>{title}</h1>
     <p class="subtitle">{description || 'An amazing project'}</p>
     <div class="stats">
@@ -31,56 +26,34 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
       <span class="stat">🍴 {stats.forks}</span>
       <span class="stat">📊 {stats.issues} issues</span>
     </div>
-    <div class="actions">
-      {hasReadme && <a href="./docs" class="action-link">📖 Documentation</a>}
-      <a href={repoUrl} class="action-link" target="_blank" rel="noopener">🔗 View on GitHub</a>
-    </div>
   </div>
 </section>
 
 <style>
   .hero {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     color: white;
     padding: 4rem 0;
     text-align: center;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
   }
 
   .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  .logo-section {
-    margin-bottom: 2rem;
-  }
-
-  .project-logo {
-    height: 4rem;
-    width: auto;
-    filter: brightness(0) invert(1);
-  }
-
   h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
-    font-family: Inter, sans-serif;
-    line-height: 1.1;
   }
 
   .subtitle {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
     opacity: 0.9;
-    line-height: 1.6;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .stats {
@@ -88,7 +61,6 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
   }
 
   .stat {
@@ -96,58 +68,15 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 500;
-    font-size: 0.9rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .action-link {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.2s ease;
-  }
-
-  .action-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) {
-    .hero {
-      padding: 3rem 0;
-    }
-
     h1 {
-      font-size: 2.5rem;
-    }
-
-    .subtitle {
-      font-size: 1.1rem;
+      font-size: 2rem;
     }
     
     .stats {
       gap: 1rem;
-    }
-
-    .actions {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .action-link {
-      width: 100%;
-      max-width: 200px;
     }
   }
 </style>
