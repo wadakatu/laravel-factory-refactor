@@ -16,120 +16,178 @@ export interface Props {
 const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astro.props;
 ---
 
-<!-- 🎯 MINIMAL LAYOUT - Clean and Simple Design -->
-<header class="minimal-header">
-  <div class="container">
-    <h1 class="project-title">{title}</h1>
-    {description && <p class="project-description">{description}</p>}
-    
-    <div class="project-meta">
-      <span class="meta-item">⭐ {stats.stars}</span>
-      <span class="meta-item">🍴 {stats.forks}</span>
-      <span class="meta-item">📋 {stats.issues} issues</span>
+<div class="minimal-layout">
+  <!-- Hero Section -->
+  <section class="hero-minimal">
+    <div class="container">
+      <header class="header">
+        <h1>{title}</h1>
+        <p class="description">{description}</p>
+        
+        <div class="actions">
+          <a href={repoUrl} class="button" target="_blank" rel="noopener noreferrer">
+            View Repository
+          </a>
+        </div>
+      </header>
+      
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value">{stats.stars}</span>
+          <span class="stat-label">Stars</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">{stats.forks}</span>
+          <span class="stat-label">Forks</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">{stats.issues}</span>
+          <span class="stat-label">Issues</span>
+        </div>
+      </div>
     </div>
-    
-    <div class="action-links">
-      {hasReadme && <a href="./docs" class="link">📖 Documentation</a>}
-      <a href={repoUrl} class="link" target="_blank" rel="noopener">🔗 View Source</a>
-    </div>
-  </div>
-</header>
+  </section>
+</div>
 
 <style>
-  .minimal-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e1e5e9;
-    padding: 3rem 0;
-    text-align: center;
+  /* Base Layout Styles */
+  .minimal-layout {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background-color: #ffffff;
   }
 
   .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
 
-  .project-title {
-    font-size: 2.5rem;
+  /* Hero Section */
+  .hero-minimal {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    padding: 3rem 0;
+  }
+
+  .header {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
     font-weight: 600;
-    color: #4A90E2;
     margin-bottom: 1rem;
-    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
   }
 
-  .project-description {
-    font-size: 1.1rem;
-    color: #586069;
+  .description {
+    font-size: 1.125rem;
     margin-bottom: 2rem;
-    line-height: 1.5;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.6;
+    color: #666666;
   }
 
-  .project-meta {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+  .actions {
     margin-bottom: 2rem;
-    flex-wrap: wrap;
   }
 
-  .meta-item {
-    font-size: 0.9rem;
-    color: #6a737d;
-    background: #f6f8fa;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid #e1e5e9;
-  }
-
-  .action-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .link {
-    text-decoration: none;
-    color: #4A90E2;
-    font-weight: 500;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid #4A90E2;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    background: transparent;
-  }
-
-  .link:hover {
-    background: #4A90E2;
+  .button {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #000000;
     color: white;
-    transform: translateY(-1px);
+    border: none;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
   }
 
+  .button:hover {
+    opacity: 0.8;
+  }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #999999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
   @media (max-width: 768px) {
-    .minimal-header {
+    .container {
+      padding: 0 1rem;
+    }
+    
+    .hero-minimal {
+      min-height: auto;
       padding: 2rem 0;
     }
     
-    .project-title {
-      font-size: 2rem;
+    .header h1 {
+      font-size: 1.75rem;
     }
     
-    .project-meta {
+    .description {
+      font-size: 1rem;
+    }
+    
+    .stats {
+      gap: 1.5rem;
+    }
+    
+    .stat-value {
+      font-size: 1.25rem;
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats {
+      flex-direction: column;
       gap: 1rem;
     }
     
-    .action-links {
-      flex-direction: column;
-      align-items: center;
+    .stat {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5rem;
     }
     
-    .link {
-      width: 100%;
-      max-width: 200px;
-      text-align: center;
+    .stat-value {
+      font-size: 1rem;
     }
   }
 </style>
