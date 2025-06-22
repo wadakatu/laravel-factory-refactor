@@ -9,8 +9,11 @@ export interface Props {
 
 const { prs } = Astro.props;
 
-// Demo features for minimal layout
-const features = [{"title":"AI Analysis","description":"Automatically analyzes your repository structure, language, and project characteristics to generate optimized showcase sites.","icon":"🤖"},{"title":"Astro-Powered","description":"Built with Astro for fast, SEO-friendly static sites with minimal JavaScript. Perfect for project documentation.","icon":"🚀"},{"title":"Custom Design","description":"Each generated site features unique design tailored to your project's personality and target audience.","icon":"🎨"},{"title":"GitHub Integration","description":"Seamlessly integrates with GitHub APIs to fetch repository data, issues, and pull requests automatically.","icon":"📊"},{"title":"Multiple Layouts","description":"Choose from various layout patterns including minimal, hero-focused, grid, and content-heavy designs.","icon":"📐"},{"title":"Responsive Design","description":"All generated sites are fully responsive and optimized for mobile, tablet, and desktop viewing.","icon":"📱"}];
+// 動的Why Choose Cardsの取得
+const whyChooseCards = [{"icon":"⚡","title":"効率的なリファクタリング","description":"シンプルなコマンドで効率的にリファクタリングを実行。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"シンプルな設定","description":"直感的なオプション設定によりカスタマイズ可能。","highlight":"5-minute setup","priority":9}];
+
+// 優先度でソートし、最大6枚まで表示
+const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
 ---
 
 <!-- Features Section -->
@@ -20,11 +23,12 @@ const features = [{"title":"AI Analysis","description":"Automatically analyzes y
       <h2>Key Features</h2>
       
       <div class="features-grid">
-        {features.map((feature) => (
-          <div class="feature-card">
+        {sortedWhyChooseCards.map((feature, index) => (
+          <div class="feature-card" style={`animation-delay: ${index * 0.1}s`}>
             <div class="feature-icon">{feature.icon}</div>
             <h3 class="feature-title">{feature.title}</h3>
             <p class="feature-description">{feature.description}</p>
+            <div class="feature-highlight">{feature.highlight}</div>
           </div>
         ))}
       </div>
@@ -94,6 +98,17 @@ const features = [{"title":"AI Analysis","description":"Automatically analyzes y
     font-size: 0.875rem;
     line-height: 1.6;
     color: #666666;
+    margin-bottom: 1rem;
+  }
+
+  .feature-highlight {
+    background: #1a1a1a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
   }
 
   /* Responsive Design */
