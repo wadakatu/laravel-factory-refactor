@@ -111,7 +111,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     margin: 0;
     font-size: 1.5rem;
     color: var(--primary);
-    font-family: Poppins, sans-serif;
+    font-family: Inter, sans-serif;
     font-weight: 700;
     white-space: nowrap;
     transition: color 0.2s ease;
@@ -219,7 +219,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     padding: 4rem 0;
     text-align: center;
     overflow: hidden;
-    
+    backdrop-filter: blur(10px);
   }
 
   .hero-background {
@@ -255,14 +255,14 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     font-size: 0.9rem;
     margin-bottom: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    
+    backdrop-filter: blur(10px);
   }
 
   .hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 1.5rem;
     font-weight: 700;
-    font-family: Poppins, sans-serif;
+    font-family: Inter, sans-serif;
     background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.8));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -295,7 +295,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
-    box-shadow: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
     transition: all 0.3s ease;
     border: 2px solid var(--accent);
   }
@@ -334,7 +334,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
     padding: 1.5rem 1rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
   }
 
