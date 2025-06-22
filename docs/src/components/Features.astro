@@ -10,7 +10,7 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"効率的なリファクタリング","description":"時間をかけずにプロジェクト全体を一貫したスタイルに整えます。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単設定","description":"数行のコマンドでセットアップが完了します。","highlight":"5-minute setup","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"自動化による効率化","description":"手作業を減らし、プロジェクトのスピードアップを実現します。","highlight":"100% 自動化","priority":10},{"icon":"🔧","title":"カスタマイズ可能","description":"ディレクトリとネームスペースをカスタマイズして、プロジェクトに適合させることができます。","highlight":"柔軟な設定","priority":9},{"icon":"💡","title":"最新のLaravelスタイル","description":"Laravelのベストプラクティスに準拠したコードスタイルに変換します。","highlight":"最新スタイル対応","priority":8}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
