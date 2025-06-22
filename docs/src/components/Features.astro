@@ -10,7 +10,7 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"🎯","title":"User-Focused Design","description":"Intuitive interface designed for optimal user experience","highlight":"95% satisfaction","priority":10},{"icon":"🚀","title":"Scalable Architecture","description":"Built to handle growth from startup to enterprise scale","highlight":"Million+ users","priority":9},{"icon":"🛡️","title":"Enterprise Security","description":"Industry-standard security practices and compliance","highlight":"SOC 2 certified","priority":8},{"icon":"🔄","title":"Continuous Updates","description":"Regular feature releases and security patches","highlight":"Weekly releases","priority":7},{"icon":"🟨","title":"JavaScript Powered","description":"Leveraging the full potential of JavaScript for optimal performance","highlight":"JavaScript optimized","priority":6}];
+const whyChooseCards = [{"icon":"⚡","title":"Seamless Integration","description":"Integrates effortlessly with existing Laravel projects for a smoother workflow.","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"Quick Setup","description":"Get started in minutes with an easy installation process.","highlight":"5-minute setup","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -92,7 +92,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, system-ui, sans-serif;
+    font-family: Poppins, sans-serif;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -186,7 +186,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -290,7 +290,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
 
   .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
   .feature-icon {
@@ -303,7 +303,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, system-ui, sans-serif;
+    font-family: Poppins, sans-serif;
   }
 
   .feature-card p {
@@ -326,7 +326,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     background: white;
     padding: 3rem;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
