@@ -1,10 +1,10 @@
 /* Global Styles for AI-Generated Site */
 
 :root {
-  --primary: #4a90e2;
-  --secondary: #50e3c2;
-  --accent: #f5a623;
-  --background: #f0f4f8;
+  --primary: #4f46e5;
+  --secondary: #10b981;
+  --accent: #f472b6;
+  --background: #f9fafb;
   --text-primary: #2d3748;
   --text-secondary: #718096;
   --border: #e2e8f0;
@@ -25,7 +25,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Poppins, sans-serif;
+  font-family: Inter, sans-serif;
   line-height: 1.2;
 }
 
