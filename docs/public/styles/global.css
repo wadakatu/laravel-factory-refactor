@@ -1,10 +1,10 @@
 /* Global Styles for AI-Generated Site */
 
 :root {
-  --primary: #4f46e5;
-  --secondary: #6b7280;
-  --accent: #10b981;
-  --background: #f9fafb;
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --accent: #f093fb;
+  --background: #ffffff;
   --text-primary: #2d3748;
   --text-secondary: #718096;
   --border: #e2e8f0;
@@ -18,7 +18,7 @@
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: system-ui, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background);
@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code, pre {
-  font-family: Fira Code, monospace;
+  font-family: JetBrains Mono, monospace;
 }
 
 .container {
