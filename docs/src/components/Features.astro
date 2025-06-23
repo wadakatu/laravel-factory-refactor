@@ -10,410 +10,129 @@ export interface Props {
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"効率的なリファクタリング","description":"手動作業を減らし、コードベースの一貫性を保ちながら、迅速にリファクタリングを行います。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"カスタマイズ可能","description":"プロジェクトのニーズに応じてディレクトリや名前空間を指定し、リファクタリングをカスタマイズ可能。","highlight":"5-minute setup","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"高性能リファクタリング","description":"コードの一貫性を保ちながら、迅速な変換を実現。","highlight":"コード整形が瞬時に完了","priority":10},{"icon":"🔧","title":"カスタマイズ性","description":"プロジェクトに応じたディレクトリやネームスペースのカスタマイズが可能。","highlight":"5-minute setup","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
-
-// カード枚数に応じたCSSクラス生成
-const getGridClass = (cardCount) => {
-  if (cardCount <= 1) return 'grid-single';
-  if (cardCount === 2) return 'grid-double';
-  if (cardCount === 3) return 'grid-triple';
-  if (cardCount === 4) return 'grid-quad';
-  return 'grid-multi';
-};
-
-const gridClass = getGridClass(sortedWhyChooseCards.length);
 ---
 
-<section class="features">
+<!-- Features Section -->
+<section class="features-minimal">
   <div class="container">
-    <div class="section-header">
-      <h2>Why Choose This Project?</h2>
-      <p class="section-subtitle">Discover the powerful features that make this project stand out</p>
-    </div>
-    
-    <div class={`features-grid ${gridClass}`}>
-      {sortedWhyChooseCards.map((feature, index) => (
-        <div class="feature-card" style={`animation-delay: ${index * 0.1}s`}>
-          <div class="feature-icon">{feature.icon}</div>
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
-          <div class="feature-highlight">{feature.highlight}</div>
-        </div>
-      ))}
-    </div>
-
-    {prs.length > 0 && (
-      <div class="recent-activity">
-        <h3>Recent Development Activity</h3>
-        <div class="activity-grid">
-          {prs.slice(0, 4).map((pr) => (
-            <div class="activity-card">
-              <div class="activity-header">
-                <span class="activity-type">🔀</span>
-                <span class="activity-date">
-                  {pr.merged_at ? new Date(pr.merged_at).toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric' 
-                  }) : 'Recent'}
-                </span>
-              </div>
-              <h4>{pr.title}</h4>
-              <p>by {pr.user?.login || 'Community'}</p>
-            </div>
-          ))}
-        </div>
+    <div class="section">
+      <h2>Key Features</h2>
+      
+      <div class="features-grid">
+        {sortedWhyChooseCards.map((feature, index) => (
+          <div class="feature-card" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="feature-icon">{feature.icon}</div>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-description">{feature.description}</p>
+            <div class="feature-highlight">{feature.highlight}</div>
+          </div>
+        ))}
       </div>
-    )}
+    </div>
   </div>
 </section>
 
 <style>
-  .features {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #f8fafc, #ffffff);
-    position: relative;
-  }
-
+  /* Base Layout Styles */
   .container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 2rem;
   }
 
-  .section-header {
-    text-align: center;
+  /* Features Section */
+  .features-minimal {
+    padding: 4rem 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1a1a1a;
+    background-color: #ffffff;
+  }
+
+  .section {
     margin-bottom: 4rem;
   }
 
-  .section-header h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-family: Inter, sans-serif;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .section-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
+  .section h2 {
+    margin-bottom: 3rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    font-size: 1.5rem;
   }
 
   .features-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-bottom: 5rem;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    align-items: stretch;
-  }
-  
-  /* カード枚数別のレイアウト */
-  .features-grid.grid-single {
-    max-width: 400px;
-  }
-  
-  .features-grid.grid-double {
-    max-width: 900px;
-  }
-  
-  .features-grid.grid-triple {
-    max-width: 1200px;
-  }
-  
-  .features-grid.grid-quad {
-    max-width: 1200px;
-  }
-  
-  .features-grid.grid-multi {
-    max-width: 1200px;
-  }
-  
-  /* 大画面での最適化 */
-  @media (min-width: 1200px) {
-    .features-grid.grid-double {
-      max-width: 1000px;
-    }
-    
-    .features-grid.grid-triple {
-      max-width: 1400px;
-    }
-    
-    .features-grid.grid-quad {
-      max-width: 1600px;
-    }
-    
-    .features-grid.grid-multi {
-      max-width: 1400px;
-    }
-  }
-  
-  /* タブレット対応 */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .features-grid.grid-triple,
-    .features-grid.grid-quad,
-    .features-grid.grid-multi {
-      max-width: 700px;
-    }
-  }
-  
-  /* モバイル対応 */
-  @media (max-width: 768px) {
-    .features-grid {
-      max-width: 400px;
-      gap: 1.5rem;
-    }
   }
 
   .feature-card {
-    background: white;
-    padding: 2rem;
-    flex: 1 1 200px;
-    min-width: 200px;
-    max-width: 400px;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    animation: slideInUp 0.6s ease forwards; opacity: 0;
-  }
-  
-  /* カード枚数に応じた幅調整 */
-  .features-grid.grid-single .feature-card {
-    flex: 0 0 auto;
-    max-width: 400px;
-    min-width: 300px;
-  }
-  
-  .features-grid.grid-double .feature-card {
-    flex: 1 1 350px;
-    max-width: 400px;
-    min-width: 280px;
-  }
-  
-  .features-grid.grid-triple .feature-card {
-    flex: 1 1 300px;
-    max-width: 350px;
-    min-width: 250px;
-  }
-  
-  .features-grid.grid-quad .feature-card {
-    flex: 1 1 300px;
-    max-width: 350px;
-    min-width: 250px;
-  }
-  
-  .features-grid.grid-multi .feature-card {
-    flex: 1 1 280px;
-    max-width: 320px;
-    min-width: 220px;
-  }
-  
-  /* 大画面でのカード幅調整 */
-  @media (min-width: 1200px) {
-    .features-grid.grid-double .feature-card {
-      flex: 1 1 400px;
-      max-width: 450px;
-      min-width: 350px;
-    }
-    
-    .features-grid.grid-triple .feature-card {
-      flex: 1 1 350px;
-      max-width: 400px;
-      min-width: 300px;
-    }
-    
-    .features-grid.grid-quad .feature-card {
-      flex: 1 1 300px;
-      max-width: 350px;
-      min-width: 280px;
-    }
-    
-    .features-grid.grid-multi .feature-card {
-      flex: 1 1 320px;
-      max-width: 380px;
-      min-width: 280px;
-    }
-  }
-  
-  /* タブレットでのカード幅調整 */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .features-grid.grid-triple .feature-card,
-    .features-grid.grid-quad .feature-card,
-    .features-grid.grid-multi .feature-card {
-      flex: 1 1 calc(50% - 1rem);
-      max-width: 320px;
-      min-width: 200px;
-    }
-  }
-  
-  /* モバイルでのカード幅調整 */
-  @media (max-width: 768px) {
-    .feature-card,
-    .features-grid.grid-single .feature-card,
-    .features-grid.grid-double .feature-card,
-    .features-grid.grid-triple .feature-card,
-    .features-grid.grid-quad .feature-card,
-    .features-grid.grid-multi .feature-card {
-      flex: 1 1 100%;
-      max-width: 400px;
-    }
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    padding: 1.5rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background-color: #fafafa;
+    transition: all 0.2s ease;
   }
 
   .feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-color: #999999;
   }
 
   .feature-icon {
-    font-size: 3rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    display: block;
+    color: #1a1a1a;
   }
 
-  .feature-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    font-family: Inter, sans-serif;
+  .feature-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
   }
 
-  .feature-card p {
-    color: var(--text-secondary);
+  .feature-description {
+    font-size: 0.875rem;
     line-height: 1.6;
+    color: #666666;
     margin-bottom: 1rem;
   }
 
   .feature-highlight {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: #1a1a1a;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 500;
     display: inline-block;
   }
 
-  .recent-activity {
-    background: white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .recent-activity h3 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-  }
-
-  .activity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .activity-card {
-    background: #f8fafc;
-    padding: 1.5rem;
-    border-radius: 12px;
-    border-left: 4px solid var(--accent);
-    transition: all 0.3s ease;
-  }
-
-  .activity-card:hover {
-    background: #f1f5f9;
-    transform: translateX(4px);
-  }
-
-  .activity-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .activity-type {
-    font-size: 1.2rem;
-  }
-
-  .activity-date {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    background: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 12px;
-  }
-
-  .activity-card h4 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    line-height: 1.3;
-  }
-
-  .activity-card p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
+  /* Responsive Design */
   @media (max-width: 768px) {
-    .features {
-      padding: 3rem 0;
+    .container {
+      padding: 0 1rem;
     }
     
     .features-grid {
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
     
-    .recent-activity {
-      padding: 2rem;
+    .feature-card {
+      padding: 1rem;
     }
     
-    .activity-grid {
-      grid-template-columns: 1fr;
+    .section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    
+    .features-minimal {
+      padding: 2rem 0;
     }
   }
 </style>
