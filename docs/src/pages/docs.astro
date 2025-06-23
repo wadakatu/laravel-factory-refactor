@@ -4,10 +4,20 @@ import Layout from '../layouts/Layout.astro';
 export interface Props {
   title: string;
   description?: string;
-  repoData: any;
+  repoData: {
+    repo: {
+      name: string;
+      html_url: string;
+    };
+  };
 }
 
-const { title, description, repoData } = Astro.props;
+const { title, description, repoData } = Astro.props as Props;
+
+const hasLogo = true;
+const logoUrl = "https://github.com/wadakatu/laravel-factory-refactor/raw/main/assets/logo.png";
+const repoName = repoData.repo.name;
+const repoUrl = repoData.repo.html_url;
 ---
 
 <Layout title={title + " - Documentation"} description={description}>
@@ -17,16 +27,18 @@ const { title, description, repoData } = Astro.props;
       <div class="container">
         <nav class="minimal-nav">
           <div class="nav-brand">
-            
             <a href="./" class="brand-link">
-              <img src="https://github.com/wadakatu/laravel-factory-refactor/raw/main/assets/logo.png" alt="laravel-factory-refactor logo" class="brand-logo" />
+              {hasLogo ? (
+                <img src={logoUrl} alt={repoName + " logo"} class="brand-logo" />
+              ) : (
+                <h1 class="brand-title">{repoName}</h1>
+              )}
             </a>
-            
           </div>
           <div class="nav-links">
             <a href="./" class="nav-link">Home</a>
             <a href="./docs" class="nav-link nav-active">Documentation</a>
-            <a href="https://github.com/wadakatu/laravel-factory-refactor" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+            <a href={repoUrl} class="nav-link" target="_blank" rel="noopener">GitHub</a>
           </div>
         </nav>
       </div>
@@ -192,7 +204,7 @@ const { title, description, repoData } = Astro.props;
 <a href="https://packagist.org/packages/wadakatu/laravel-factory-refactor" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor" alt="Packagist PHP Version Support" class="markdown-image" loading="lazy" /></a>
 <a href="https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License" class="markdown-image" loading="lazy" /></a>
 
-<p>This package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x...</p>
+<p>This package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x..</p>
 
 <p>With this package, you can save plenty of time and focus on other important things.</p>
       </div>
@@ -206,7 +218,7 @@ const { title, description, repoData } = Astro.props;
 <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">bash</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-zcps5kknt')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-trnkg7lcc')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -214,7 +226,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-zcps5kknt" class="language-bash">composer require wadakatu/laravel-factory-refactor --dev</code></pre>
+      <pre><code id="code-trnkg7lcc" class="language-bash">composer require wadakatu/laravel-factory-refactor --dev</code></pre>
     </div>
       </div>
     </section>
@@ -227,7 +239,7 @@ const { title, description, repoData } = Astro.props;
 <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">bash</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-27ni00v3a')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-nbogndhyp')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -235,7 +247,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-27ni00v3a" class="language-bash">php artisan refactor:factory</code></pre>
+      <pre><code id="code-nbogndhyp" class="language-bash">php artisan refactor:factory</code></pre>
     </div>
       </div>
     </section>
@@ -250,7 +262,7 @@ const { title, description, repoData } = Astro.props;
 <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">bash</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-mwwmnmoj6')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-6tduc8ygk')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -258,7 +270,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-mwwmnmoj6" class="language-bash">php artisan refactor:factory --dir tests/Feature</code></pre>
+      <pre><code id="code-6tduc8ygk" class="language-bash">php artisan refactor:factory --dir tests/Feature</code></pre>
     </div>
 
 <p>---</p>
@@ -270,7 +282,7 @@ const { title, description, repoData } = Astro.props;
 <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">bash</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-7os73qgbr')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-49vrn5zyx')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -278,7 +290,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-7os73qgbr" class="language-bash">php artisan refactor:factory --dir app/Models　--namespace App\\Models</code></pre>
+      <pre><code id="code-49vrn5zyx" class="language-bash">php artisan refactor:factory --dir app/Models　--namespace App\\Models</code></pre>
     </div>
 
 <p>---</p>
@@ -298,7 +310,7 @@ const { title, description, repoData } = Astro.props;
         <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">phpt</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-uhp0e380e')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-iceinxs30')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -306,7 +318,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-uhp0e380e" class="language-phpt">factory(User::class)-&gt;make();
+      <pre><code id="code-iceinxs30" class="language-phpt">factory(User::class)-&gt;make();
         factory(App\Models\User::class)-&gt;make();
         factory(User::class, 10)-&gt;make();
         factory(App\Models\User::class, 10)-&gt;make();
@@ -322,7 +334,7 @@ const { title, description, repoData } = Astro.props;
         <div class="code-block-container">
       <div class="code-block-header">
         <span class="code-language">phpt</span>
-        <button class="copy-button" onclick="copyCodeToClipboard('code-1cypyc7wz')" title="Copy code">
+        <button class="copy-button" onclick="copyCodeToClipboard('code-hxkf7zich')" title="Copy code">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -330,7 +342,7 @@ const { title, description, repoData } = Astro.props;
           Copy
         </button>
       </div>
-      <pre><code id="code-1cypyc7wz" class="language-phpt">User::factory()-&gt;make();
+      <pre><code id="code-hxkf7zich" class="language-phpt">User::factory()-&gt;make();
         App\Models\User::factory()-&gt;make();
         User::factory()-&gt;count(10)-&gt;make();
         App\Models\User::factory()-&gt;count(10)-&gt;make();
@@ -598,7 +610,7 @@ const { title, description, repoData } = Astro.props;
     {
       "id": "laravel-factory-refactor",
       "title": "Laravel-Factory-Refactor",
-      "content": "[![GitHub release (latest by date)](https://img.shields.io/github/v/release/wadakatu/laravel-factory-refactor?label=packagist)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)\n[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)\n[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)\n\nThis package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x...\n\nWith this package, you can save plenty of time and focus on other important things.",
+      "content": "[![GitHub release (latest by date)](https://img.shields.io/github/v/release/wadakatu/laravel-factory-refactor?label=packagist)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)\n[![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/wadakatu/laravel-factory-refactor)](https://packagist.org/packages/wadakatu/laravel-factory-refactor)\n[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wadakatu/laravel-factory-refactor/blob/main/LICENSE)\n\nThis package will help you to refactor the style of factory call from helper to static method for Laravel 10.x, 11.x, 12.x..\n\nWith this package, you can save plenty of time and focus on other important things.",
       "anchor": "#laravel-factory-refactor",
       "level": 1
     },
