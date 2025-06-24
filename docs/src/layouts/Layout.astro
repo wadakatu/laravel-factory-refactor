@@ -1,48 +1,37 @@
 ---
+import BaseLayout from '@gitlyte/shared/components/Layout/BaseLayout.astro';
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props as Props;
+
+// Custom design tokens for this generated site
+const customTokens = {
+  colors: {
+    primary: "#667eea",
+    secondary: "#764ba2",
+    accent: "#f093fb",
+    background: "#ffffff",
+    surface: "#ffffff",
+    textPrimary: "#2d3748",
+    textSecondary: "#718096",
+    textMuted: "#a0aec0",
+    border: "#e2e8f0",
+    success: "#48bb78",
+    warning: "#ed8936",
+    error: "#f56565"
+  }
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={description || "AI-generated project site"} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <link rel="icon" type="image/png" href="https://github.com/wadakatu/laravel-factory-refactor/raw/main/assets/favicon.ico" />
-    <link rel="stylesheet" href="/styles/global.css" />
-  </head>
-  <body>
-    <slot />
-  </body>
-</html>
-
-<style>
-  :root {
-    --primary: #4F46E5;
-    --secondary: #EC4899;
-    --accent: #F59E0B;
-    --background: #F9FAFB;
-    --text-primary: #2d3748;
-    --text-secondary: #718096;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: Roboto, sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background: var(--background);
-    min-height: 100vh;
-  }
-</style>
+<BaseLayout 
+  title={title} 
+  description={description} 
+  customTokens={customTokens}
+  layoutType="generated"
+>
+  <slot />
+</BaseLayout>

@@ -1,4 +1,6 @@
 ---
+import MinimalLayout from '@gitlyte/shared/components/Layout/MinimalLayout.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -14,62 +16,25 @@ interface Props {
 }
 
 const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astro.props as Props;
+
+// Create repo data for the shared layout
+const repoData = {
+  title,
+  description,
+  stats,
+  hasReadme,
+  repoUrl,
+  hasLogo,
+  logoUrl
+};
 ---
 
-<div class="minimal-layout">
-  <!-- Navigation Header -->
-  <header class="minimal-header">
-    <div class="container">
-      <nav class="minimal-nav">
-        <div class="nav-brand">
-          {hasLogo && logoUrl ? (
-            <a href="../" class="brand-link">
-              <img src={logoUrl} alt={title + " logo"} class="brand-logo" />
-            </a>
-          ) : (
-            <a href="../" class="brand-link">
-              <h1 class="brand-title">{title}</h1>
-            </a>
-          )}
-        </div>
-        <div class="nav-links">
-          <a href="../" class="nav-link nav-active">Home</a>
-          {hasReadme && <a href="docs/" class="nav-link">Documentation</a>}
-          <a href={repoUrl} class="nav-link" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero-minimal">
-    <div class="container">
-      <header class="hero-header">
-        <h1 class="hero-title">{title}</h1>
-        <p class="description">{description}</p>
-        
-        <div class="actions">
-          <a href={repoUrl} class="button" target="_blank" rel="noopener noreferrer">
-            View Repository
-          </a>
-        </div>
-      </header>
-      
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-value">{stats.stars}</span>
-          <span class="stat-label">Stars</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">{stats.forks}</span>
-          <span class="stat-label">Forks</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value">{stats.issues}</span>
-          <span class="stat-label">Issues</span>
-        </div>
-      </div>
-    </div>
+<MinimalLayout 
+  title={title} 
+  description={description || "AI-generated project site"} 
+  stats={stats}
+  repoData={repoData}
+/>
   </section>
 </div>
 
