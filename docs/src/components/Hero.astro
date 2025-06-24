@@ -23,18 +23,18 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
       <nav class="minimal-nav">
         <div class="nav-brand">
           {hasLogo && logoUrl ? (
-            <a href="./" class="brand-link">
+            <a href="../" class="brand-link">
               <img src={logoUrl} alt={title + " logo"} class="brand-logo" />
             </a>
           ) : (
-            <a href="./" class="brand-link">
+            <a href="../" class="brand-link">
               <h1 class="brand-title">{title}</h1>
             </a>
           )}
         </div>
         <div class="nav-links">
-          <a href="./" class="nav-link nav-active">Home</a>
-          {hasReadme && <a href="./docs" class="nav-link">Documentation</a>}
+          <a href="../" class="nav-link nav-active">Home</a>
+          {hasReadme && <a href="./" class="nav-link">Documentation</a>}
           <a href={repoUrl} class="nav-link" target="_blank" rel="noopener">GitHub</a>
         </div>
       </nav>
