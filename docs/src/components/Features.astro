@@ -2,7 +2,7 @@
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"高い信頼性","description":"信頼性の高いリファクタリングを提供し、Laravelプロジェクトを強化します。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単なセットアップ","description":"たった数分でセットアップ完了。すぐにリファクタリングを始められます。","highlight":"5-minute setup","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"迅速なリファクタリング","description":"スピーディに古いコードを最新のLaravelスタイルに変換します。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"カスタマイズ性","description":"プロジェクトに応じたカスタマイズが可能です。","highlight":"5-minute setup","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
