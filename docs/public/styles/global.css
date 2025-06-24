@@ -1,9 +1,9 @@
 /* Global Styles for AI-Generated Site */
 
 :root {
-  --primary: #1a73e8;
-  --secondary: #34a853;
-  --accent: #fbbc05;
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --accent: #f093fb;
   --background: #ffffff;
   --text-primary: #2d3748;
   --text-secondary: #718096;
@@ -18,19 +18,19 @@
 }
 
 body {
-  font-family: Open Sans, sans-serif;
+  font-family: system-ui, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Roboto, sans-serif;
+  font-family: Inter, sans-serif;
   line-height: 1.2;
 }
 
 code, pre {
-  font-family: Source Code Pro, monospace;
+  font-family: JetBrains Mono, monospace;
 }
 
 .container {
