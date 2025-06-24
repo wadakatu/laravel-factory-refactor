@@ -1,16 +1,8 @@
 ---
-export interface Props {
-  prs: Array<{
-    title: string;
-    user: { login: string } | null;
-    merged_at: string | null;
-  }>;
-}
-
 const { prs } = Astro.props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = [{"icon":"⚡","title":"開発効率を向上","description":"手間のかかるリファクタリングを自動化し、開発者の負担を軽減します。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"柔軟な設定オプション","description":"ディレクトリや名前空間を指定して柔軟にリファクタリングできます。","highlight":"5-minute setup","priority":9}];
+const whyChooseCards = [{"icon":"⚡","title":"高い信頼性","description":"信頼性の高いリファクタリングを提供し、Laravelプロジェクトを強化します。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単なセットアップ","description":"たった数分でセットアップ完了。すぐにリファクタリングを始められます。","highlight":"5-minute setup","priority":9}];
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
