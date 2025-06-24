@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"高性能なリファクタリング","description":"効率的なコード変換で開発環境を最新に保つ。","highlight":"99.9% 正確性","priority":10},{"icon":"🔧","title":"簡単セットアップ","description":"手間のかからないインストールと設定。","highlight":"5分で完了","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"高速リファクタリング","description":"artisanコマンドによるスピーディーなリファクタリング","highlight":"わずか数秒で完了","priority":10},{"icon":"🔧","title":"カスタマイズ可能","description":"ディレクトリやネームスペースの指定が可能","highlight":"高い柔軟性","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
