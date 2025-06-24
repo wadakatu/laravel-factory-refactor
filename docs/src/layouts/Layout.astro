@@ -1,5 +1,10 @@
 ---
-const { title, description } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -19,10 +24,10 @@ const { title, description } = Astro.props;
 
 <style>
   :root {
-    --primary: #1a73e8;
-    --secondary: #ff6f61;
-    --accent: #00c48c;
-    --background: #f4f4f9;
+    --primary: #4A90E2;
+    --secondary: #50E3C2;
+    --accent: #F5A623;
+    --background: #F4F7F9;
     --text-primary: #2d3748;
     --text-secondary: #718096;
   }
