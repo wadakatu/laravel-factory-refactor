@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"即時導入可能","description":"わずか数分でセットアップ完了し、すぐに使用開始できます。","highlight":"5-minute setup","priority":10},{"icon":"🔧","title":"カスタマイズ性","description":"プロジェクトのニーズに応じて、柔軟に設定を調整可能。","highlight":"Flexibility","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"時間を節約","description":"自動化されたリファクタリングで貴重な開発時間を節約できます。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"容易なセットアップ","description":"わずか数分でセットアップが完了し、すぐに使用可能です。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -87,15 +87,15 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
-    color: #5a67d8;
-    font-family: Inter, sans-serif;
-    background: linear-gradient(135deg, #5a67d8, #48bb78);
+    color: #4a90e2;
+    font-family: Poppins, sans-serif;
+    background: linear-gradient(135deg, #4a90e2, #50e3c2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     /* Fallback for browsers that don't support background-clip */
     @supports not (-webkit-background-clip: text) {
-      color: #5a67d8;
+      color: #4a90e2;
       background: none;
     }
   }
@@ -186,7 +186,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-radius: 0px;
+    border-radius: 12px;
     box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
@@ -304,7 +304,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
   }
 
   .feature-card p {
@@ -326,7 +326,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .recent-activity {
     background: white;
     padding: 3rem;
-    border-radius: 0px;
+    border-radius: 12px;
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
@@ -347,7 +347,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .activity-card {
     background: #f8fafc;
     padding: 1.5rem;
-    border-radius: 0px;
+    border-radius: 12px;
     border-left: 4px solid var(--accent);
     transition: all 0.3s ease;
   }
