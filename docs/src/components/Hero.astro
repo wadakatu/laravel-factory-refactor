@@ -16,13 +16,36 @@ interface Props {
 const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astro.props as Props;
 ---
 
-<!-- Hero-Focused Layout -->
-<section class="hero-focused">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">✨ Featured Project</div>
-      <h1 class="hero-title">{title}</h1>
-      <p class="hero-description">{description || 'An innovative solution for modern development challenges'}</p>
+<!-- Hero-Focused Layout with Header -->
+<div class="hero-focused-layout">
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="main-nav">
+        <div class="nav-brand">
+          {hasLogo && logoUrl ? (
+            <img src={logoUrl} alt={title + " logo"} class="brand-logo" />
+          ) : (
+            <h1>{title}</h1>
+          )}
+        </div>
+        <div class="nav-links">
+          <a href="./" class="nav-link">🏠 Home</a>
+          {hasReadme && <a href="docs/" class="nav-link">📖 Docs</a>}
+          <a href={repoUrl} class="nav-link" target="_blank" rel="noopener">🔗 GitHub</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <section class="hero-focused">
+    <div class="hero-background"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">✨ Featured Project</div>
+        <h1 class="hero-title">{title}</h1>
+        <p class="hero-description">{description || 'An innovative solution for modern development challenges'}</p>
       
       <div class="action-buttons">
         {hasReadme && <a href="docs/" class="btn-primary">📚 Get Started</a>}
@@ -44,12 +67,88 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <style>
+  .hero-focused-layout {
+    min-height: 100vh;
+  }
+
+  .site-header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    min-height: 4rem;
+  }
+
+  .nav-brand h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #3a86ff;
+    font-weight: 700;
+    font-family: Poppins, sans-serif;
+  }
+
+  .brand-logo {
+    height: 2rem;
+    width: auto;
+    max-width: 200px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background: color-mix(in srgb, #3a86ff 15%, transparent);
+    color: #3a86ff;
+    transform: translateY(-1px);
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background: radial-gradient(circle at 30% 20%, #fb5607 20%, transparent 50%),
+                radial-gradient(circle at 70% 80%, #ff006e 20%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(1deg); }
+    66% { transform: translate(-20px, 20px) rotate(-1deg); }
+  }
+
   .hero-focused {
-    background: linear-gradient(135deg, #1a202c, #2d3748);
+    background: linear-gradient(135deg, #3a86ff, #ff006e);
     color: white;
     padding: 6rem 0;
     text-align: center;
@@ -123,7 +222,7 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
 
   .btn-primary {
     background: white;
-    color: #1a202c;
+    color: #3a86ff;
     padding: 0.875rem 2rem;
     border-radius: 8px;
     text-decoration: none;
@@ -189,6 +288,26 @@ const { title, description, stats, hasReadme, repoUrl, hasLogo, logoUrl } = Astr
   }
 
   @media (max-width: 768px) {
+    .main-nav {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.75rem 0;
+    }
+
+    .nav-links {
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .nav-link {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .brand-logo {
+      height: 1.5rem;
+    }
+
     .hero-focused {
       padding: 4rem 0;
     }

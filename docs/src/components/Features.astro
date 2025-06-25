@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"パフォーマンス重視","description":"効率的なコードリファクタリングで生産性を向上。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単セットアップ","description":"わずか数分で導入可能なシンプルなセットアップ。","highlight":"5-minute setup","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"一貫したコードスタイル","description":"プロジェクト全体でコードスタイルを統一可能","highlight":"一貫性の向上","priority":10},{"icon":"🔧","title":"設定の自由度","description":"ターゲットディレクトリやネームスペースをカスタマイズ可能","highlight":"高い柔軟性","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -181,7 +181,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-radius: 0px;
+    border-radius: 12px;
     box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
@@ -321,7 +321,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .recent-activity {
     background: white;
     padding: 3rem;
-    border-radius: 0px;
+    border-radius: 12px;
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
@@ -342,7 +342,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .activity-card {
     background: #f8fafc;
     padding: 1.5rem;
-    border-radius: 0px;
+    border-radius: 12px;
     border-left: 4px solid var(--accent);
     transition: all 0.3s ease;
   }
