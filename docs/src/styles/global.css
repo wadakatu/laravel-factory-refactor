@@ -1,140 +1,120 @@
-以下は、指定されたデザインシステムに基づいて作成された包括的なグローバルCSSです。このCSSは、要求されたテーマシステム、レスポンシブタイポグラフィ、一貫したスペーシングシステム、モダンなCSS技術、アクセシビリティサポート、パフォーマンス最適化を考慮しています。
+/* Global Styles for AI-Generated Site */
 
-```css
 :root {
-  /* Color Palette */
-  --color-primary: #0A74DA;
-  --color-secondary: #F5B700;
-  --color-accent: #0F4C81;
-  --color-background: #FFFFFF;
-  --color-surface: #F8F9FA;
-  --color-text-primary: #333333;
-  --color-text-secondary: #555555;
-  --color-text-accent: #0A74DA;
+  /* Colors */
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #718096;
+  --color-text-muted: #a0aec0;
+  --color-border: #e2e8f0;
+  --color-success: #48bb78;
+  --color-warning: #ed8936;
+  --color-error: #f56565;
 
   /* Typography */
-  --font-heading: 'Roboto', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
-  --font-code: 'Fira Code', monospace;
-  --font-weight-heading: 700;
-  --font-size-body: 16px;
-  --line-height-body: 1.5;
+  --font-heading: Inter, sans-serif;
+  --font-body: system-ui, sans-serif;
+  --font-code: JetBrains Mono, monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
 
   /* Spacing */
-  --spacing-unit: 1rem; /* Base unit for spacing */
-  --spacing-small: calc(var(--spacing-unit) / 2);
-  --spacing-medium: var(--spacing-unit);
-  --spacing-large: calc(var(--spacing-unit) * 2);
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3rem;
+  --space-4xl: 4rem;
+  --space-5xl: 6rem;
 
-  /* Border and Shadows */
-  --border-radius: 4px;
-  --box-shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 
-  /* Animations */
-  --transition-duration: 0.3s;
-  --transition-easing: ease-in-out;
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Legacy compatibility */
+  --primary: var(--color-primary);
+  --secondary: var(--color-secondary);
+  --accent: var(--color-accent);
+  --background: var(--color-background);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --border: var(--color-border);
+  --shadow: var(--shadow-md);
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+* {
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 100%; /* 16px base */
-  scroll-behavior: smooth;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-body);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-  background-color: var(--color-surface);
+  line-height: 1.6;
   color: var(--color-text-primary);
-  margin: 0;
-  padding: 0 var(--spacing-medium);
+  background: var(--color-background);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: var(--font-weight-heading);
-  margin-bottom: var(--spacing-medium);
-}
-
-p {
-  margin-bottom: var(--spacing-medium);
-}
-
-a {
-  color: var(--color-text-accent);
-  text-decoration: none;
-  transition: color var(--transition-duration) var(--transition-easing);
-}
-
-a:hover,
-a:focus {
-  color: var(--color-primary);
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-button {
-  font-family: var(--font-body);
-  padding: var(--spacing-small) var(--spacing-medium);
-  border: none;
-  border-radius: var(--border-radius);
-  background-color: var(--color-primary);
-  color: var(--color-background);
-  cursor: pointer;
-  transition: background-color var(--transition-duration) var(--transition-easing);
-}
-
-button:hover,
-button:focus {
-  background-color: var(--color-secondary);
+  line-height: 1.2;
 }
 
 code, pre {
   font-family: var(--font-code);
-  background-color: var(--color-surface);
-  padding: var(--spacing-small);
-  border-radius: var(--border-radius);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-medium);
-  display: flex;
-  flex-direction: column;
+  padding: 0 20px;
 }
 
-.grid {
-  display: grid;
-  gap: var(--spacing-medium);
-}
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
 
-.flex {
-  display: flex;
-  gap: var(--spacing-medium);
-}
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 112.5%; /* 18px */
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
   }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
 }
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 125%; /* 20px */
-  }
-}
-```
-
-このCSSは、モダンなWeb開発のニーズに応えるために設計されています。テーマのカスタマイズにはCSS変数を使用し、レスポンシブなタイポグラフィやスペーシングを実現しています。GridやFlexboxを用いることで、デザインが柔軟に対応できるようになっています。また、アクセシビリティやパフォーマンスの最適化も考慮されています。
