@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"開発効率を最大化","description":"手動の変換作業を自動化し、開発スピードを向上させます。","highlight":"効率的な開発","priority":10},{"icon":"🔧","title":"簡単なカスタマイズ","description":"ディレクトリや名前空間を指定して、ニーズに合わせたファクトリースタイル変換が可能。","highlight":"5-minute setup","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"効率的なコードリファクタリング","description":"迅速にファクトリーコールを最新のスタイルへ変換します。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"カスタマイズ可能","description":"ディレクトリとネームスペースを指定して動作をカスタマイズ可能。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -87,15 +87,15 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
-    color: #1d4ed8;
+    color: #667eea;
     font-family: Inter, sans-serif;
-    background: linear-gradient(135deg, #1d4ed8, #9333ea);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     /* Fallback for browsers that don't support background-clip */
     @supports not (-webkit-background-clip: text) {
-      color: #1d4ed8;
+      color: #667eea;
       background: none;
     }
   }
