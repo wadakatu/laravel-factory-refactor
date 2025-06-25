@@ -10,6 +10,8 @@ export interface Props {
   tableOfContents: Array<{ id: string; title: string; level: number; anchor: string }>;
   readingTime?: number;
   lastUpdated?: string;
+  hasLogo?: boolean;
+  logoUrl?: string;
 }
 
 const { 
@@ -20,13 +22,15 @@ const {
   content,
   tableOfContents,
   readingTime = 5,
-  lastUpdated = new Date().toLocaleDateString()
+  lastUpdated = new Date().toLocaleDateString(),
+  hasLogo = false,
+  logoUrl = ''
 } = Astro.props;
 ---
 
 <section class="hero-focused-docs-layout">
   <!-- ナビゲーション -->
-  <HeroFocusedHeader title={title} currentPage={currentPage} githubUrl={githubUrl} />
+  <HeroFocusedHeader title={title} currentPage={currentPage} githubUrl={githubUrl} hasLogo={hasLogo} logoUrl={logoUrl} />
 
   <!-- ドキュメントコンテンツ -->
   <div class="docs-container">

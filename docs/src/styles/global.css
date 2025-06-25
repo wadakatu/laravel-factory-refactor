@@ -2,11 +2,11 @@
 
 :root {
   /* Colors */
-  --color-primary: #4a90e2;
-  --color-secondary: #50e3c2;
-  --color-accent: #f5a623;
-  --color-background: #f7f8fa;
-  --color-surface: #f7f8fa;
+  --color-primary: #3490dc;
+  --color-secondary: #38c172;
+  --color-accent: #ffed4a;
+  --color-background: #f8fafc;
+  --color-surface: #f8fafc;
   --color-text-primary: #2d3748;
   --color-text-secondary: #718096;
   --color-text-muted: #a0aec0;
@@ -16,8 +16,8 @@
   --color-error: #f56565;
 
   /* Typography */
-  --font-heading: Poppins, sans-serif;
-  --font-body: Roboto, sans-serif;
+  --font-heading: Roboto, sans-serif;
+  --font-body: Open Sans, sans-serif;
   --font-code: Fira Code, monospace;
 
   /* Font Sizes */

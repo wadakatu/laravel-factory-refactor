@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"迅速かつ信頼性","description":"リファクタリングを自動化し、人的ミスを減らします。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"カスタマイズが可能","description":"ディレクトリやネームスペースを指定して柔軟なリファクタリングが可能。","highlight":"5-minute setup","priority":9},{"icon":"🌟","title":"最新のLaravel対応","description":"常に最新のLaravelバージョンに対応し、新機能を迅速に統合。","highlight":"Supports Laravel 12.x","priority":8}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"高い互換性","description":"Laravelの複数バージョンに対応し、互換性を確保しています。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単セットアップ","description":"迅速なセットアップにより、すぐに使用開始できます。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -87,15 +87,15 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
-    color: #4a90e2;
-    font-family: Poppins, sans-serif;
-    background: linear-gradient(135deg, #4a90e2, #50e3c2);
+    color: #3490dc;
+    font-family: Roboto, sans-serif;
+    background: linear-gradient(135deg, #3490dc, #38c172);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     /* Fallback for browsers that don't support background-clip */
     @supports not (-webkit-background-clip: text) {
-      color: #4a90e2;
+      color: #3490dc;
       background: none;
     }
   }
@@ -304,7 +304,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Poppins, sans-serif;
+    font-family: Roboto, sans-serif;
   }
 
   .feature-card p {

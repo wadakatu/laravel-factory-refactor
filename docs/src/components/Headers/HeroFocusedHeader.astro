@@ -3,16 +3,22 @@ export interface Props {
   title: string;
   currentPage?: 'home' | 'docs' | string;
   githubUrl?: string;
+  hasLogo?: boolean;
+  logoUrl?: string;
 }
 
-const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gitlyte' } = Astro.props;
+const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gitlyte', hasLogo = false, logoUrl = '' } = Astro.props;
 ---
 
 <header class="hero-focused-header">
   <div class="container">
     <nav class="main-nav">
       <div class="nav-brand">
-        <h1>{title}</h1>
+        {hasLogo && logoUrl ? (
+          <img src={logoUrl} alt={`${title} logo`} class="brand-logo" />
+        ) : (
+          <h1>{title}</h1>
+        )}
       </div>
       <div class="nav-links">
         <a href="#features" class={`nav-link ${currentPage === 'home' ? 'active' : ''}`}>🏠 Home</a>
@@ -53,6 +59,13 @@ const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gi
     font-size: var(--text-2xl);
     color: var(--color-primary);
     font-weight: 700;
+  }
+
+  .brand-logo {
+    height: 2.5rem;
+    width: auto;
+    max-width: 12rem;
+    object-fit: contain;
   }
 
   .nav-links {
