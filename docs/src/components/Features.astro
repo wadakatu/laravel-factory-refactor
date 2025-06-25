@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"手間いらずのアップグレード","description":"Laravelのバージョンアップに伴うファクトリー変更を自動化。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"カスタマイズ性の高さ","description":"特定のディレクトリや名前空間を自由に設定可能。","highlight":"5-minute setup","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"最新技術への対応","description":"Laravelの最新バージョンに対応し、常に最適化された環境を提供。","highlight":"最新バージョン対応","priority":10},{"icon":"🔧","title":"簡単導入","description":"シンプルなコマンドで素早くセットアップ可能。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -87,15 +87,15 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
-    color: #1a202c;
-    font-family: Poppins, sans-serif;
-    background: linear-gradient(135deg, #1a202c, #2d3748);
+    color: #1E3A8A;
+    font-family: Inter, sans-serif;
+    background: linear-gradient(135deg, #1E3A8A, #2563EB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     /* Fallback for browsers that don't support background-clip */
     @supports not (-webkit-background-clip: text) {
-      color: #1a202c;
+      color: #1E3A8A;
       background: none;
     }
   }
@@ -304,7 +304,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Poppins, sans-serif;
+    font-family: Inter, sans-serif;
   }
 
   .feature-card p {
