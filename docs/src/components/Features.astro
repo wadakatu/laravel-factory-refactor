@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"High Performance","description":"Optimized algorithms and minimal overhead for maximum speed","highlight":"10x faster","priority":10},{"icon":"🔧","title":"Easy Integration","description":"Simple installation and intuitive API design","highlight":"5-minute setup","priority":9},{"icon":"📚","title":"Rich Documentation","description":"Comprehensive guides, examples, and API references","highlight":"100% coverage","priority":8},{"icon":"🌟","title":"Active Community","description":"Vibrant ecosystem with regular updates and community support","highlight":"1000+ contributors","priority":7},{"icon":"🐘","title":"PHP Powered","description":"Leveraging the full potential of PHP for optimal performance","highlight":"PHP optimized","priority":6},{"icon":"💻","title":"Laravel Powered","description":"Leveraging the full potential of Laravel for optimal performance","highlight":"Laravel optimized","priority":5}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"開発効率の向上","description":"手動作業を自動化することで、開発のスピードを劇的に向上します。","highlight":"時間短縮","priority":10},{"icon":"🔧","title":"簡単導入","description":"Composerで簡単に導入可能で、すぐに利用を開始できます。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
