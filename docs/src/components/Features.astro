@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"最新技術への対応","description":"Laravelの最新バージョンに対応し、常に最新の技術を活用できます。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"迅速なセットアップ","description":"簡単なインストールで、即座にプロジェクトに導入可能。","highlight":"5-minute setup","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"パフォーマンス重視","description":"効率的なコードリファクタリングで生産性を向上。","highlight":"99.9% uptime","priority":10},{"icon":"🔧","title":"簡単セットアップ","description":"わずか数分で導入可能なシンプルなセットアップ。","highlight":"5-minute setup","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -88,7 +88,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -181,8 +181,8 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    border-radius: 0px;
+    box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -286,7 +286,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
 
   .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
   .feature-icon {
@@ -299,7 +299,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
-    font-family: Inter, sans-serif;
+    font-family: Poppins, sans-serif;
   }
 
   .feature-card p {
@@ -321,8 +321,8 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .recent-activity {
     background: white;
     padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    border-radius: 0px;
+    box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
@@ -342,7 +342,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .activity-card {
     background: #f8fafc;
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 0px;
     border-left: 4px solid var(--accent);
     transition: all 0.3s ease;
   }
