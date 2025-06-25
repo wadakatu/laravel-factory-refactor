@@ -6,7 +6,7 @@ interface Props {
 const { prs } = Astro.props as Props;
 
 // 動的Why Choose Cardsの取得
-const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"最新技術への対応","description":"Laravelの最新バージョンに対応し、常に最適化された環境を提供。","highlight":"最新バージョン対応","priority":10},{"icon":"🔧","title":"簡単導入","description":"シンプルなコマンドで素早くセットアップ可能。","highlight":"5-minute setup","priority":9}]');
+const whyChooseCards = JSON.parse('[{"icon":"⚡","title":"即時導入可能","description":"わずか数分でセットアップ完了し、すぐに使用開始できます。","highlight":"5-minute setup","priority":10},{"icon":"🔧","title":"カスタマイズ性","description":"プロジェクトのニーズに応じて、柔軟に設定を調整可能。","highlight":"Flexibility","priority":9}]');
 
 // 優先度でソートし、最大6枚まで表示
 const sortedWhyChooseCards = whyChooseCards.sort((a, b) => b.priority - a.priority).slice(0, 6);
@@ -87,15 +87,15 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .section-header h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1rem;
-    color: #1E3A8A;
+    color: #5a67d8;
     font-family: Inter, sans-serif;
-    background: linear-gradient(135deg, #1E3A8A, #2563EB);
+    background: linear-gradient(135deg, #5a67d8, #48bb78);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     /* Fallback for browsers that don't support background-clip */
     @supports not (-webkit-background-clip: text) {
-      color: #1E3A8A;
+      color: #5a67d8;
       background: none;
     }
   }
@@ -186,7 +186,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
@@ -326,7 +326,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .recent-activity {
     background: white;
     padding: 3rem;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
@@ -347,7 +347,7 @@ const gridClass = getGridClass(sortedWhyChooseCards.length);
   .activity-card {
     background: #f8fafc;
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 0px;
     border-left: 4px solid var(--accent);
     transition: all 0.3s ease;
   }
