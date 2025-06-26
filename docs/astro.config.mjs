@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://your-username.github.io',
-  base: '/your-repo-name',
+  site: 'https://wadakatu.github.io',
+  base: '/laravel-factory-refactor',
   outDir: './dist',
   build: {
     assets: 'assets'
