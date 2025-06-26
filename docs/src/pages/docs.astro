@@ -24,5 +24,12 @@ const repoData = {
     title={repoData.title}
     description={repoData.description}
     githubUrl={repoData.repoUrl}
+    content="<h2>Getting Started</h2><p>Welcome to the documentation for this project.</p><h2>Installation</h2><p>Follow these steps to get started...</p>"
+    tableOfContents={[
+      { id: "getting-started", title: "Getting Started", level: 2, anchor: "#getting-started" },
+      { id: "installation", title: "Installation", level: 2, anchor: "#installation" }
+    ]}
+    readingTime={3}
+    currentPage="docs"
   />
 </BaseLayout>
