@@ -2,11 +2,11 @@
 
 :root {
   /* Colors */
-  --color-primary: #3490dc;
-  --color-secondary: #38c172;
-  --color-accent: #ffed4a;
-  --color-background: #f8fafc;
-  --color-surface: #f8fafc;
+  --color-primary: #667eea;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
   --color-text-primary: #2d3748;
   --color-text-secondary: #718096;
   --color-text-muted: #a0aec0;
@@ -16,9 +16,9 @@
   --color-error: #f56565;
 
   /* Typography */
-  --font-heading: Roboto, sans-serif;
-  --font-body: Open Sans, sans-serif;
-  --font-code: Fira Code, monospace;
+  --font-heading: Inter, sans-serif;
+  --font-body: system-ui, sans-serif;
+  --font-code: JetBrains Mono, monospace;
 
   /* Font Sizes */
   --text-xs: 0.75rem;

@@ -12,6 +12,8 @@ export interface Props {
   lastUpdated?: string;
   hasLogo?: boolean;
   logoUrl?: string;
+  homeUrl?: string;
+  docsUrl?: string;
 }
 
 const { 
@@ -24,13 +26,15 @@ const {
   readingTime = 5,
   lastUpdated = new Date().toLocaleDateString(),
   hasLogo = false,
-  logoUrl = ''
+  logoUrl = '',
+  homeUrl = '../',
+  docsUrl = '../docs'
 } = Astro.props;
 ---
 
 <section class="hero-focused-docs-layout">
   <!-- ナビゲーション -->
-  <HeroFocusedHeader title={title} currentPage={currentPage} githubUrl={githubUrl} hasLogo={hasLogo} logoUrl={logoUrl} />
+  <HeroFocusedHeader title={title} currentPage={currentPage} githubUrl={githubUrl} hasLogo={hasLogo} logoUrl={logoUrl} homeUrl={homeUrl} docsUrl={docsUrl} />
 
   <!-- ドキュメントコンテンツ -->
   <div class="docs-container">

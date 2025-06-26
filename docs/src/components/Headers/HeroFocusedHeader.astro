@@ -5,9 +5,19 @@ export interface Props {
   githubUrl?: string;
   hasLogo?: boolean;
   logoUrl?: string;
+  homeUrl?: string;
+  docsUrl?: string;
 }
 
-const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gitlyte', hasLogo = false, logoUrl = '' } = Astro.props;
+const { 
+  title, 
+  currentPage = 'home', 
+  githubUrl = 'https://github.com/wadakatu/gitlyte', 
+  hasLogo = false, 
+  logoUrl = '',
+  homeUrl = '../',
+  docsUrl = '../docs'
+} = Astro.props;
 ---
 
 <header class="hero-focused-header">
@@ -21,8 +31,8 @@ const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gi
         )}
       </div>
       <div class="nav-links">
-        <a href="#features" class={`nav-link ${currentPage === 'home' ? 'active' : ''}`}>🏠 Home</a>
-        <a href="#docs" class={`nav-link ${currentPage === 'docs' ? 'active' : ''}`}>📖 Docs</a>
+        <a href={homeUrl} class={`nav-link ${currentPage === 'home' ? 'active' : ''}`}>🏠 Home</a>
+        <a href={docsUrl} class={`nav-link ${currentPage === 'docs' ? 'active' : ''}`}>📖 Docs</a>
         <a href={githubUrl} class="nav-link" target="_blank" rel="noopener">🔗 GitHub</a>
       </div>
     </nav>
@@ -54,11 +64,18 @@ const { title, currentPage = 'home', githubUrl = 'https://github.com/wadakatu/gi
     min-height: 4rem;
   }
 
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    min-height: 2.5rem; /* Ensure consistent height regardless of logo vs text */
+  }
+
   .nav-brand h1 {
     margin: 0;
     font-size: var(--text-2xl);
     color: var(--color-primary);
     font-weight: 700;
+    line-height: 2.5rem; /* Match logo height for consistency */
   }
 
   .brand-logo {
