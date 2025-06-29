@@ -1,16 +1,16 @@
 /* Global styles generated from design strategy */
 :root {
-  --color-primary: #667eea;
-  --color-secondary: #764ba2;
-  --color-accent: #f093fb;
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+  --color-accent: #f59e0b;
   
   /* Additional design system variables */
-  --font-heading: Inter, sans-serif;
-  --font-body: system-ui, sans-serif;
+  --font-heading: Poppins, sans-serif;
+  --font-body: Roboto, sans-serif;
   
   /* Effects */
   --enable-blur: none;
-  --shadow-style: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-style: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Base typography and layout styles */
